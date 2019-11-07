@@ -9,6 +9,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthenticationPageComponent } from './pages/authentication-page/authentication-page.component';
+import { RedblackDirective } from './directives/redblack.directive';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AuthenticationPageComponent } from './pages/authentication-page/authent
     HomePageComponent,
     SignupPageComponent,
     NavbarComponent,
-    AuthenticationPageComponent
+    AuthenticationPageComponent,
+    RedblackDirective
   ],
   imports: [
     BrowserModule,
