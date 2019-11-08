@@ -10,6 +10,10 @@ import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthenticationPageComponent } from './pages/authentication-page/authentication-page.component';
 import { RedblackDirective } from './directives/redblack.directive';
+import { AboutPageComponent } from './pages/about-page/about-page.component';
+import { PricesPageComponent } from './pages/prices-page/prices-page.component';
+import { ContactPageComponent } from './pages/contact-page/contact-page.component';
+import { SliderComponent } from './components/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { RedblackDirective } from './directives/redblack.directive';
     SignupPageComponent,
     NavbarComponent,
     AuthenticationPageComponent,
-    RedblackDirective
+    AboutPageComponent,
+    PricesPageComponent,
+    RedblackDirective,
+    ContactPageComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
