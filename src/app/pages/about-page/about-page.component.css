@@ -1,0 +1,32 @@
+
+.text-about{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    /*mudar background ou utilizar imagem*/
+    background: #99badd;
+}
+
+/*vamo rever outra maneira de generalizar essa barra*/
+.text-about h1:after{
+    content: "";
+	display: block;
+	width: 60px;
+	height: 3px;
+	background: #000;
+	margin: 6px auto 10px auto;
+}
+
+.about-services{
+    padding-top: 40px;
+}
+
+.about-services h1:after{
+    content: "";
+	display: block;
+	width: 100px;
+	height: 3px;
+	background: #000;
+	margin: 3px 0px 5px 3px;
+}
