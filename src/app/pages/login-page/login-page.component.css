@@ -1,4 +1,33 @@
-form{
-  width: 60%;
-  margin:auto;
+.login-form{
+  margin-top: 23%;
+  border-width: 10px;
+}
+
+.login-content-div{
+  background-color: #72E873;
+  width: 40%;
+  height: 50%;
+  left: 30%;
+  top: 25%;
+  position: absolute;
+  border-radius: 3%;
+}
+
+
+.auth-button:hover{
+  background-color: #333;
+  color: white;
+}
+.auth-button{
+  background-color: white;
+  color: black;
+}
+
+.auth-button-outline{
+  border-color: black;
+  color: black;
+}
+.auth-button-outline:hover{
+  background-color: #333;
+  color: white;
 }

@@ -1,4 +1,25 @@
-form{
-  width: 60%;
-  margin:auto;
+.signup-form{
+  /* background-color: red; */
+  margin-top: 28%;
+  border-width: 10px;
+}
+
+.signup-content-div{
+  background-color: #72E873;
+  width: 40%;
+  height: 70%;
+  left: 30%;
+  top: 25%;
+  position: absolute;
+  border-radius: 3%;
+}
+
+
+.auth-button:hover{
+  background-color: #333;
+  color: white;
+}
+.auth-button{
+  background-color: white;
+  color: black;
 }

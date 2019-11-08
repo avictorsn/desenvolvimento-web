@@ -14,6 +14,7 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { PricesPageComponent } from './pages/prices-page/prices-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { ChangeBackgroundDirective } from './directives/change-background.directive';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SliderComponent } from './components/slider/slider.component';
     PricesPageComponent,
     RedblackDirective,
     ContactPageComponent,
-    SliderComponent
+    SliderComponent,
+    ChangeBackgroundDirective
   ],
   imports: [
     BrowserModule,
