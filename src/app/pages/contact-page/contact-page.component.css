@@ -1,0 +1,59 @@
+.text-contact{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    /*mudar background ou utilizar imagem*/
+    background: #99badd;
+}
+
+/*vamo rever outra maneira de generalizar essa barra*/
+.text-contact h1:after{
+    content: "";
+	display: block;
+	width: 60px;
+	height: 3px;
+	background: #000;
+	margin: 6px auto 10px auto;
+}
+
+.contact-form{
+    padding-top: 40px;
+}
+
+.contact-form label{
+	display: block;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 18px;
+	line-height: 25px;
+	margin-bottom: 4px;
+}
+
+.contact-form input {
+	display: block;
+	width: 100%;
+	border: 3px solid #72E873;
+	background: none;
+	padding: 7px 10px;
+	margin-bottom: 10px;
+	outline: none;
+	font-size: 14px;
+	font-family: Georgia, "Times New Roman", serif;
+}
+
+.contact-form textarea {
+	display: block;
+	width: 100%;
+	height: 120px;
+	border: 3px solid #72E873;
+	background: none;
+	padding: 7px 10px;
+	margin-bottom: 20px;
+	outline: none;
+	font-size: 14px;
+	font-family: Georgia, "Times New Roman", serif;
+}
+
+.contact-form button {
+	padding: 7px 40px;
+}
