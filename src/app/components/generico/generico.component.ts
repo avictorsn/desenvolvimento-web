@@ -1,3 +1,5 @@
+import { ApiService } from '../../services/api/api.service';
+import { User } from './../../models/user.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { AlternaComponentesService } from 'src/app/services/alternaComponetes/alterna-componentes.service';
 
