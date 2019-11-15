@@ -1,10 +1,10 @@
 
 
 <nav class="nav flex-column vertical-menu">
-    <a class="nav-link active" href="/home">Pomodoro</a>
-    <a class="nav-link" href="/home">Flash Cards</a>
-    <a class="nav-link" href="/home">Planejamento</a>
-    <a class="nav-link" href="/home">Relatórios</a>
-    <a class="nav-link" href="/home">Agenda</a>
-    <a class="nav-link" href="/home">Notícias</a>
+    <a class="nav-link active" [ngClass]="{'active': this.service.pomodoroAtivo}" (click)="componentePomodoro()">Pomodoro</a>
+    <a class="nav-link" [ngClass]="{'active': this.service.flashCardAtivo}"  (click)="componenteFlashCard()" >Flash Cards</a>
+    <a class="nav-link" [ngClass]="{'active': this.service.planejamentoAtivo}"  (click)="componentePlanejamento()" >Planejamento</a>
+    <a class="nav-link" [ngClass]="{'active': this.service.relatorioAtivo}"  (click)="componenteRelatorio()">Relatórios</a>
+    <a class="nav-link" [ngClass]="{'active': this.service.agendaAtivo}"  (click)="componenteAgenda()" >Agenda</a>
+    <a class="nav-link" [ngClass]="{'active': this.service.noticiasAtivo}"  (click)="componenteNoticias()" >Notícias</a>
 </nav>

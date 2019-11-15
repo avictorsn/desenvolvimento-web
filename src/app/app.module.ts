@@ -19,6 +19,13 @@ import { VerticalNavbarComponent } from './components/vertical-navbar/vertical-n
 
 import { RedblackDirective } from './directives/redblack.directive';
 import { ChangeBackgroundDirective } from './directives/change-background.directive';
+import { PomodoroComponent } from './components/pomodoro/pomodoro.component';
+import { AlternaComponentesService } from './services/alternaComponetes/alterna-componentes.service';
+import { FlashcardComponent } from './components/flashcard/flashcard.component';
+import { PlanejamentoComponent } from './components/planejamento/planejamento.component';
+import { RelatoriosComponent } from './components/relatorios/relatorios.component';
+import { AgendaComponent } from './components/agenda/agenda.component';
+import { NoticiasComponent } from './components/noticias/noticias.component';
 
 @NgModule({
   declarations: [
@@ -35,14 +42,20 @@ import { ChangeBackgroundDirective } from './directives/change-background.direct
     SliderComponent,
     ChangeBackgroundDirective,
     GenericoComponent,
-    VerticalNavbarComponent
+    VerticalNavbarComponent,
+    PomodoroComponent,
+    FlashcardComponent,
+    PlanejamentoComponent,
+    RelatoriosComponent,
+    AgendaComponent,
+    NoticiasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ AlternaComponentesService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

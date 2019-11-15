@@ -1,9 +1,30 @@
 <div class="areaComponentes">
 
 
-    <ul *ngFor="let item of list">
-        <li>{{item}}</li>
-    </ul>
+    <div *ngIf="this.service.pomodoroAtivo">
+        <app-pomodoro></app-pomodoro>
+    </div>
+
+    <div *ngIf="this.service.flashCardAtivo ">
+        <app-flashcard></app-flashcard>
+    </div>
+
+    <div *ngIf="this.service.planejamentoAtivo ">
+        <app-planejamento></app-planejamento>
+    </div>
+
+    <div *ngIf="this.service.relatorioAtivo ">
+        <app-relatorios></app-relatorios>
+    </div>
+
+    <div *ngIf="this.service.agendaAtivo ">
+        <app-agenda></app-agenda>
+    </div>
+
+    <div *ngIf="this.service.noticiasAtivo ">
+        <app-noticias></app-noticias>
+    </div>
+
 
 
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AlternaComponentesService } from 'src/app/services/alternaComponetes/alterna-componentes.service';
 
 @Component({
   selector: 'app-generico',
@@ -7,9 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GenericoComponent implements OnInit {
 
-  list = ['Teste1', 'Teste2'];
-
-  constructor() { }
+  constructor( private service: AlternaComponentesService ) { 
+  }
 
   ngOnInit() {
   }
