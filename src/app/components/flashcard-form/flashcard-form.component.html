@@ -1,0 +1,16 @@
+<div class="form-group">
+  <label for="flashcardQuestion">Pergunta</label>
+  <input type="text" class="form-control" [(ngModel)]="name" #ctrl="ngModel" id="flashcardQuestionId" aria-describedby="questionHelper" placeholder="Pergunta">
+  <small id="questionHelper" class="form-text text-muted">Escreva uma questão para o flashcard</small>
+</div>
+<div class="form-group">
+  <label for="flashcardAnswer">Resposta</label>
+  <input type="text" class="form-control" [(ngModel)]="name" #ctrl="ngModel" id="flashcardAnswerId" aria-describedby="answerHelper" placeholder="Resposta">
+  <small id="answerHelper" class="form-text text-muted">Defina a resposta para esta questão</small>
+</div>
+
+<!-- <div class="form-group">
+  <label for="flashcardTopic">Matéria</label>
+  <input type="text" class="form-control" id="flashcardTopic" placeholder="Matéria">
+</div> -->
+<button (click)="goToList()" class="btn btn-lg flashcard-form-button">Adicionar flashcard</button>

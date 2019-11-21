@@ -1,0 +1,17 @@
+.flashcard-main-button{
+  margin-left: 3em;
+  height: 100%;
+  background-color: #72E873;
+}
+
+
+.flashcard-main-button:hover{
+  background-color: #64cc66;
+}
+
+.margin-container{
+  margin-top: 3%;
+}
+
+.static-div{
+}

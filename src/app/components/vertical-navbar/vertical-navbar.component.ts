@@ -15,41 +15,41 @@ export class VerticalNavbarComponent implements OnInit {
   }
 
   componentePomodoro() {
-    this.desativaComponentes()
+    this.desativaComponentes();
     this.service.pomodoroAtivo = true;
   }
 
   componenteFlashCard() {
-    this.desativaComponentes()
+    this.desativaComponentes();
     this.service.flashCardAtivo = true;
   }
 
   componentePlanejamento() {
-    this.desativaComponentes()
+    this.desativaComponentes();
     this.service.planejamentoAtivo = true;
 
   }
 
   componenteRelatorio() {
-    this.desativaComponentes()
+    this.desativaComponentes();
     this.service.relatorioAtivo = true;
 
   }
 
   componenteAgenda() {
-    this.desativaComponentes()
+    this.desativaComponentes();
     this.service.agendaAtivo = true;
 
   }
 
   componenteNoticias() {
-    this.desativaComponentes()
+    this.desativaComponentes();
     this.service.noticiasAtivo = true;
 
   }
 
   desativaComponentes() {
-    this.service.desativaComponentes()
+    this.service.desativaComponentes();
   }
 
 }

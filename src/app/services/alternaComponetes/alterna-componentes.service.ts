@@ -5,12 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class AlternaComponentesService {
 
-  pomodoroAtivo: Boolean;
-  flashCardAtivo: Boolean;
-  planejamentoAtivo: Boolean;
-  relatorioAtivo: Boolean;
-  agendaAtivo: Boolean;
-  noticiasAtivo: Boolean;
+  pomodoroAtivo: boolean;
+  flashCardAtivo: boolean;
+  planejamentoAtivo: boolean;
+  relatorioAtivo: boolean;
+  agendaAtivo: boolean;
+  noticiasAtivo: boolean;
 
   constructor() { }
 

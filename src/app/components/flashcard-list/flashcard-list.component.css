@@ -1,0 +1,22 @@
+.add-button{
+  float: right !important;
+  color: #333;
+}
+
+.add-button:hover{
+  color: white;
+  background-color: #333;
+}
+
+.flashcard-list{
+  background-color: lightblue;
+}
+
+.flashcard-item{
+  background-color: #333;
+  color: white !important;
+}
+.flashcard-item:hover{
+  color: #333 !important;
+  background-color: lightblue;
+}

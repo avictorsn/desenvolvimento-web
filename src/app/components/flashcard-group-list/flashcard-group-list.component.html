@@ -1,0 +1,17 @@
+<div class="list-group" *ngFor="let group of flashcardGroupList">
+  <a class="list-group-item list-group-item-action" (click)="showMe(group.id)" [ngClass]="{'active': this.selectionService.activeFlashcardGroup == group.id}">
+    {{group.groupname}}
+      <div class="btn btn-sm add-button" (click)="removeMe(group.id)">
+          <fa-icon [icon]="faTrashAlt"></fa-icon>
+      </div>
+      <div class="btn btn-sm add-button">
+        -
+      </div>
+      <div class="btn btn-sm add-button">
+        +
+      </div>
+  </a>
+</div>
+<div class="flashcard-list">
+  <app-flashcard-list [flashcardList]="this.activeFlashcardList"></app-flashcard-list>
+</div>

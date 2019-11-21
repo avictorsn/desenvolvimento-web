@@ -1,0 +1,8 @@
+<div data-spy="scroll" class="list-group flashcard-list" *ngFor="let flashcard of flashcardList">
+  <a class="list-group-item list-group-item-action flashcard-item" (click)="showMe(flashcard.id)">
+    {{flashcard.question}}
+      <div class="btn btn-sm add-button" (click)="removeMe(flashcard.id)">
+        -
+      </div>
+  </a>
+</div>

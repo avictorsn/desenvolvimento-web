@@ -7,9 +7,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlashcardComponent implements OnInit {
 
+  eventClicked = 'create';
+  wasLoaded = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  create() {
+    this.eventClicked = 'create';
+    this.wasLoaded = false;
+  }
+
+  load() {
+    this.eventClicked = 'load';
+    this.wasLoaded = false;
+  }
+
+  loaded() {
+    this.eventClicked = 'nothing';
+    this.wasLoaded = true;
   }
 
 }

@@ -6,8 +6,13 @@ body{
     left: 0;
     width: 100%;
     height: 100%;
+    position:absolute;
     padding-top: 56px;
     margin: 0 auto;
+}
+
+a{
+  cursor: default;
 }
 
 .page-size{
@@ -18,11 +23,11 @@ body{
 
 .auth-button{
     margin-right: 2em;
-    background-color: #72E873;  
+    background-color: #72E873;
     color: black;
 }
 .auth-button:hover{
-    background-color: #61cc63;  
+    background-color: #61cc63;
     color: black;
 }
 
