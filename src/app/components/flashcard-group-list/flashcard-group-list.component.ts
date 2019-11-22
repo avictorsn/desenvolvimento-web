@@ -1,7 +1,10 @@
-import { Flashcard } from './../../models/flashcard.model';
 import { Component, OnInit } from '@angular/core';
-import { SelectFlashcardGroupService } from '../../services/selectFlashcardGroup/select-flashcard-group.service';
+
+import { Flashcard } from './../../models/flashcard.model';
 import { FlashcardGroup } from '../../models/flashcardGroup.model';
+
+import { FlashcardListService } from './../../services/flashcardList/flashcard-list.service';
+import { SelectFlashcardGroupService } from '../../services/selectFlashcardGroup/select-flashcard-group.service';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -16,36 +19,42 @@ export class FlashcardGroupListComponent implements OnInit {
 
   flashcardGroupList: FlashcardGroup[];
 
-  //  Remover isto e fazer a lista de flashcards computar a lista a partir das services;
-  activeFlashcardList: Flashcard[];
-
-  constructor(private selectionService: SelectFlashcardGroupService) { }
+  //  Resolver problema de novo grupo sem lista de flashcards ficando ativo quando não deveria;
+  constructor(private selectionService: SelectFlashcardGroupService, private flashcardService: FlashcardListService) { }
 
   ngOnInit() {
-    this.flashcardGroupList = [{id: '1', groupname: 'Grupo1'}, {id: '2', groupname: 'Grupo2'}, {id: '3', groupname: 'Grupo3'}];
-    this.activeFlashcardList = [
-      {id: '1', group: 'grupo', question: 'Questão 1', answer: 'Não sei'},
-      {id: '2', group: 'grupo', question: 'Questão 2', answer: 'Não sei'},
-      {id: '3', group: 'grupo', question: 'Questão 3', answer: 'Não sei'}];
-    this.selectionService.activeFlashcardGroup = this.flashcardGroupList[0].id;
-    console.log(this.flashcardGroupList[0].id);
-
+    this.flashcardGroupList = this.selectionService.flashcardGroupList;
+    if (this.flashcardGroupList.length > 0) {
+      this.selectionService.activeFlashcardGroup = this.flashcardGroupList[0].id;
+    }
   }
 
-  getActiveFlashcard() {
+  getActiveFlashcardGroup() {
     return this.selectionService.activeFlashcardGroup;
   }
 
+  getActiveFlashcardList() {
+    return this.flashcardService.activeFlashcardList;
+  }
+
+  isEmpty() {
+    return this.selectionService.flashcardGroupList.length === 0;
+  }
+
+
   showMe(id) {
     this.selectionService.changeFlashcard(id);
-    console.log(this.selectionService.activeFlashcardGroup);
+    this.flashcardService.changeActiveFlashcardList(id);
   }
 
   removeMe(id) {
     const flashcardGroup = this.flashcardGroupList.find((element) => element.id === id);
     const index = this.flashcardGroupList.indexOf(flashcardGroup);
     this.flashcardGroupList.splice(index, 1);
-    this.selectionService.activeFlashcardGroup = this.flashcardGroupList[0].id;
+    if (this.flashcardGroupList.length > 1) {
+      this.selectionService.activeFlashcardGroup = this.flashcardGroupList[0].id;
+      this.flashcardService.changeActiveFlashcardList(this.selectionService.activeFlashcardGroup);
+    }
   }
 
 }

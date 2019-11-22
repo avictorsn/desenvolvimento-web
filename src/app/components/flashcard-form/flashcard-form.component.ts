@@ -1,3 +1,4 @@
+import { FlashcardListService } from './../../services/flashcardList/flashcard-list.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,16 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlashcardFormComponent implements OnInit {
 
-  public name: string;
+  public question: string;
+  public answer: string;
 
-  constructor() { }
+  constructor(private flashcardListService: FlashcardListService) { }
 
   ngOnInit() {
   }
 
-  goToList() {
-    console.log(this.name);
-
+  addFlashcard() {
+    this.flashcardListService.addToList(this.question, this.answer);
   }
 
 }

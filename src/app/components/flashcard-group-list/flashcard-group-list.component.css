@@ -7,3 +7,10 @@
   color: black;
   background-color: white;
 }
+
+#flashcard-list{
+  max-height: 220px;
+  margin-bottom: 10px;
+  overflow:scroll;
+  -webkit-overflow-scrolling: touch;
+}

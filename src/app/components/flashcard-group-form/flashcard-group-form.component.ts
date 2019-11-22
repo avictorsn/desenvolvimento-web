@@ -1,3 +1,4 @@
+import { SelectFlashcardGroupService } from './../../services/selectFlashcardGroup/select-flashcard-group.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,15 +9,17 @@ import { Component, OnInit } from '@angular/core';
 export class FlashcardGroupFormComponent implements OnInit {
 
   public name: string;
+  wasAdded: boolean;
 
-  constructor() { }
+  constructor(private flashcardGroupService: SelectFlashcardGroupService) { }
 
   ngOnInit() {
+    this.wasAdded = false;
   }
 
-  goToList() {
-    console.log(this.name);
-
+  createGroup() {
+    this.flashcardGroupService.addGroup(this.name);
+    this.wasAdded = true;
   }
 
 }

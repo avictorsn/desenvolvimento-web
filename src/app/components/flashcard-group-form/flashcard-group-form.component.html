@@ -1,6 +1,11 @@
-<div class="form-group">
-  <label for="flashcardGroupName">Nome do grupo de flashcards</label>
-  <input type="text" class="form-control" [(ngModel)]="name" #ctrl="ngModel" id="flashcardGroupName" aria-describedby="groupNameHelper" placeholder="Novo grupo">
-  <small id="groupNameHelper" class="form-text text-muted">Escolha um nome para o novo grupo de flashcards</small>
+<div *ngIf="!wasAdded">
+  <div class="form-group">
+    <label for="flashcardGroupName">Nome do grupo de flashcards</label>
+    <input type="text" class="form-control" [(ngModel)]="name" #ctrl="ngModel" id="flashcardGroupName" aria-describedby="groupNameHelper" placeholder="Novo grupo">
+    <small id="groupNameHelper" class="form-text text-muted">Escolha um nome para o novo grupo de flashcards</small>
+  </div>
+  <button (click)="createGroup()" class="btn btn-lg flashcard-form-button">Criar grupo</button>
 </div>
-<button (click)="goToList()" class="btn btn-lg flashcard-form-button">Avançar</button>
+<div *ngIf="wasAdded">
+  <app-flashcard-group-list></app-flashcard-group-list>
+</div>

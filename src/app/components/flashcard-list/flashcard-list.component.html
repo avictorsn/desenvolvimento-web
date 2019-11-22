@@ -1,8 +1,33 @@
 <div data-spy="scroll" class="list-group flashcard-list" *ngFor="let flashcard of flashcardList">
   <a class="list-group-item list-group-item-action flashcard-item" (click)="showMe(flashcard.id)">
     {{flashcard.question}}
-      <div class="btn btn-sm add-button" (click)="removeMe(flashcard.id)">
-        -
-      </div>
+    <div class="btn btn-sm add-button" (click)="removeMe(flashcard.id)" >
+      <fa-icon [icon]="faTrashAlt"></fa-icon>
+    </div>
+    <div class="btn btn-sm add-button" data-toggle="modal" data-target="#flashcardDetailsModal">
+        <fa-icon [icon]="faEye"></fa-icon>
+    </div>
   </a>
+
+  <!-- Flashcard-details Modal -->
+  <div class="modal fade" id="flashcardDetailsModal" tabindex="-1" role="dialog" aria-labelledby="flashcardDetailsLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="flashcardDetailsLabel">Resposta</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{flashcard.answer}}
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
+
+
