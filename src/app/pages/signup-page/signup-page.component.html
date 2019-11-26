@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col-12 signup-content-div">
             <form class="signup-form">
@@ -15,9 +15,31 @@
                     <input type="password" class="form-control" id="confirmPasswordInput" placeholder="Digite novamente a senha">
                 </div>
                 <div class="form-group text-center">
-                    <button type="submit" class="btn btn-lg auth-button" routerLink="/home">Cadastrar-se</button>
+                    <button type="submit" class="btn btn-lg auth-button" >Cadastrar-se</button>
                 </div>
             </form>
         </div>
     </div>
+</div> -->
+
+<div class="mat-display-3 text-center signup-text">Cadastre-se</div>
+
+<div class="example-container">
+  <mat-form-field appearance="outline" floatLabel="auto" class="col-md-8">
+    <mat-label>Nome completo</mat-label>
+    <input matInput type="text">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" floatLabel="auto" class="col-md-8">
+    <mat-label>Digite seu e-mail</mat-label>
+    <input matInput type="text">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="col-md-8">
+    <mat-label>Digite sua senha</mat-label>
+    <input matInput type="password">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" class="col-sm-4" routerLink="/home">Criar conta</button>
+
 </div>

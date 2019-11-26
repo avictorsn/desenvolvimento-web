@@ -2,3 +2,22 @@
   width: 100%;
   background-color: #490899;
 }
+
+.flashcard-color{
+  background-color: #fff5f5
+}
+
+.previous-button{
+  display: left;
+  left: 0;
+}
+
+.next-button{
+  display: right;
+  right: 0;
+}
+
+.reveal-button{
+  background-color: #369;
+  color: white;
+}

@@ -6,6 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialsModule } from './materials/materials.module';
+
+
 
 import { AppComponent } from './app.component';
 
@@ -80,7 +83,9 @@ import { SelectFlashcardGroupService } from './services/selectFlashcardGroup/sel
     HttpClientModule,
     FormsModule,
     FontAwesomeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialsModule
+
   ],
   providers: [ AlternaComponentesService, ApiService, SelectFlashcardGroupService, FlashcardListService ],
   bootstrap: [AppComponent]
