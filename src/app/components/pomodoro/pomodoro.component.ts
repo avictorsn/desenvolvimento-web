@@ -171,6 +171,8 @@ export class PomodoroComponent implements OnInit {
     this.currentTimeLeftInSession = this.workSessionDuration;
     this.breakSessionDuration = breakDurationInput ? parseInt(breakDurationInput) * 60 : 5 * 60;
 
+    let atraso = (this.workSessionDuration / 60) * 9
+    this.workSessionDuration+=atraso;
     console.log(this.workSessionDuration);
     (<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animation = " offsettozero "+this.workSessionDuration+"s linear forwards ";
 

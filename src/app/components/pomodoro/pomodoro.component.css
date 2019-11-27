@@ -1,16 +1,10 @@
-.svgPlay{
-    animation-play-state: running;
+#circuloPomodoroSombra{
+    position: absolute;
+    top: -1vw;
+    left: 0vw;
 }
 
-.svgPause{
-    animation-play-state: paused;
-}
-
-.svgAnimation{
-    animation: offsettozero 1500s linear forwards paused;
-}
-
-svg {
+#circuloPomodoro {
     transform: rotate(-90deg);
     stroke-dasharray: 251; /* (2PI * 40px) */
     stroke-dashoffset: 251;
@@ -39,6 +33,7 @@ circle{
 }
 
 .progress{
+    stroke-width: 7px;
     stroke: red   ;
 }
 
@@ -71,8 +66,6 @@ circle{
     font-size: 4vw;
 }
 
-.pomodoro-container{
-}
 
 #metasDoDia {
     padding-top: 10%;

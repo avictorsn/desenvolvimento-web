@@ -44,10 +44,11 @@
 
                     <div class="container">
                         <div class="gauge-container">
+                            <svg id="circuloPomodoroSombra" class="gauge" viewBox="0 0 100 100 ">
+                                <circle class="rail" r="30" cx="50" cy="50" fill="transparent"></circle>
+                            </svg>
                             <svg id="circuloPomodoro" class="gauge" viewBox="0 0 100 100 ">
-                                <circle class="rail" cx="50" cy="50" r="35" fill="transparent"></circle>
                                 <circle class="progress" r="35" cx="50" cy="50" fill="transparent"></circle>
-                                
                             </svg>
                             <div id="pomodoro-timer" class="pomodoro-timer">25:00</div>
 
@@ -56,7 +57,7 @@
 
                     <div class="pomodoro-clock">
                         <!-- o timer é feito de CSS -->
-                       
+
 
                         <div>
                             <input type="text" id="pomodoro-clock-task" placeholder="Enter your task..." />
