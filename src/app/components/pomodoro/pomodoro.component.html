@@ -36,7 +36,49 @@
 
         <!-- pomodoro -->
         <div class="col-6">
-            teste
+
+            <div class="pomodoro-container">
+                <div class="pomodoro-clock">
+                    <!-- o timer é feito de CSS -->
+                    <div id="pomodoro-timer" class="pomodoro-timer">25:00</div>
+
+                    <div>
+                        <input type="text" id="pomodoro-clock-task" placeholder="Enter your task..." />
+                    </div>
+
+                    <div class="pomodoro-clock-actions">
+                        <button id="pomodoro-start" class="btn-primary">Iniciar</button>
+                        <button id="pomodoro-pause" class="btn-primary" hidden>Pausar</button>
+                        <button id="pomodoro-stop" class="btn-primary" hidden>Parar</button>
+                    </div>
+
+                </div>
+                <!-- new -->
+                <div id="pomodoro-clock-title">
+                    <span>
+                        -------------
+                    </span>
+                </div>
+                <div id="pomodoro-clock-actions">
+                    <button  id="showConfig" >config</button>
+                    <div class="pomodoro-input">
+                        <label>Work Duration</label>
+                        <input name="input-work-duration" id="input-work-duration" type="number" />
+                    </div>
+                    <div class="pomodoro-input">
+                        <label>Break Duration</label>
+                        <input name="input-break-duration" id="input-break-duration" type="number" />
+                    </div>
+                </div>
+
+                <div id="pomodoro-info">
+                    <h6>Your Sessions </h6>
+                    <ul id="pomodoro-sessions">
+                    </ul>
+                </div>
+
+            </div>
+
         </div>
     </div>
 
