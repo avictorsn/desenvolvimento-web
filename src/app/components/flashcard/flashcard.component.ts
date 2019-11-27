@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-flashcard',
@@ -9,8 +10,12 @@ export class FlashcardComponent implements OnInit {
 
   eventClicked = 'create';
   wasLoaded = false;
+  sidenavOpened: boolean;
+  faBars = faBars;
 
-  constructor() { }
+  constructor() {
+    this.sidenavOpened = false;
+   }
 
   ngOnInit() {
   }
@@ -28,6 +33,10 @@ export class FlashcardComponent implements OnInit {
   loaded() {
     this.eventClicked = 'nothing';
     this.wasLoaded = true;
+  }
+
+  toggle() {
+    this.sidenavOpened = ! this.sidenavOpened;
   }
 
 }

@@ -16,7 +16,7 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 export class FlashcardGroupListComponent implements OnInit {
 
   faTrashAlt = faTrashAlt;
-
+  testRunning = false;
   flashcardGroupList: FlashcardGroup[];
 
   //  Resolver problema de novo grupo sem lista de flashcards ficando ativo quando não deveria;
@@ -55,6 +55,10 @@ export class FlashcardGroupListComponent implements OnInit {
       this.selectionService.activeFlashcardGroup = this.flashcardGroupList[0].id;
       this.flashcardService.changeActiveFlashcardList(this.selectionService.activeFlashcardGroup);
     }
+  }
+
+  run() {
+    this.testRunning = true;
   }
 
 }

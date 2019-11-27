@@ -1,3 +1,28 @@
-<div class="main-div container-fluid" *ngIf="loaded">
-    <h3 class="display-4">Nenhum flashcard carregado ainda!</h3>
-</div>
+<mat-card class="flashcard-color">
+  <!-- <div class="mat-display-2">Nenhum flashcard carregado ainda</div> -->
+  <mat-card-header class="text-center mat-display-1">
+    Flashcard {{flashcardIndex+1}}
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      {{flashcardList[flashcardIndex].question}}
+    </div>
+  </mat-card-content>
+  <mat-card-content>
+    <div [@answerBackgroundColor]="showAnswer">
+      Resposta: {{flashcardList[flashcardIndex].answer}}
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-icon-button class="previous-button" color="accent" (click)="goToPrevious()">
+      <fa-icon [icon]="faArrowLeft"></fa-icon>
+    </button>
+    <button mat-raised-button class="reveal-button" *ngIf="!showAnswer" (click)="revealAnswer()">Revelar resposta</button>
+    <button mat-icon-button (click)="rightOrWrong()" [@answerButtonColor]="rightAnswer" *ngIf="showAnswer">
+      <fa-icon [icon]="faCheckCircle" style="font-size:25px"></fa-icon>
+    </button>
+    <button mat-icon-button class="next-button" color="accent" (click)="goToNext()">
+      <fa-icon [icon]="faArrowRight"></fa-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

@@ -1,4 +1,13 @@
-<div class="container static-div">
+<mat-sidenav-container>
+  <mat-sidenav opened #sidenav [(opened)]="sidenavOpened" (click)="sidenav.toggle()">
+    <a class="flashcard-main-button" (click)="create()">Criar grupo de flashcards</a>
+    <a class="flashcard-main-button" (click)="load()">Abrir grupo de flashcards</a>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <fa-icon [icon]="faBars" style="font-size: 20px;color: white" (click)="sidenav.toggle()"></fa-icon>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<!-- <div class="container static-div">
   <div class="nav text-center row">
     <div class="nav-item col">
       <a class="nav-link flashcard-main-button" (click)="create()">Criar grupo de flashcards</a>
@@ -6,11 +15,8 @@
     <div class="nav-item col">
       <a class="nav-link flashcard-main-button" (click)="load()">Abrir grupo de flashcards</a>
     </div>
-    <!-- <div class="nav-item col">
-      <a class="nav-link flashcard-main-button" (click)="loaded()">Abrir</a>
-    </div> -->
   </div>
-</div>
+</div> -->
 <div class="dinamic-div">
   <div class="container margin-container text-center">
     <div *ngIf="eventClicked == 'create'">

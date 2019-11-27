@@ -1,5 +1,4 @@
-.signup-form{
-  /* background-color: red; */
+/* .signup-form{
   margin-top: 28%;
   border-width: 10px;
 }
@@ -22,4 +21,23 @@
 .auth-button{
   background-color: white;
   color: black;
+} */
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.example-container > * {
+  width: 80%;
+}
+
+
+.signup-text{
+  color: #5db95e;
+  margin-top: 0.5em;
+}
+
+
+

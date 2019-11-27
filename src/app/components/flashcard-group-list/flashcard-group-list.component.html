@@ -1,19 +1,29 @@
-<div class="list-group" *ngFor="let group of flashcardGroupList">
-  <a class="list-group-item list-group-item-action" (click)="showMe(group.id)" [ngClass]="{'active': this.selectionService.activeFlashcardGroup == group.id}">
-    {{group.groupname}}
-      <div class="btn btn-sm add-button" (click)="removeMe(group.id)">
-          <fa-icon [icon]="faTrashAlt"></fa-icon>
-      </div>
-      <div class="btn btn-sm add-button" data-toggle="modal" data-target="#addFlashcardModal">
-        +
-      </div>
-  </a>
+<div *ngIf="!this.testRunning">
+  <div class="list-group" *ngFor="let group of flashcardGroupList">
+    <a class="list-group-item list-group-item-action" (click)="showMe(group.id)" [ngClass]="{'active': this.selectionService.activeFlashcardGroup == group.id}">
+      {{group.groupname}}
+        <div class="btn btn-sm add-button" (click)="removeMe(group.id)">
+            <fa-icon [icon]="faTrashAlt"></fa-icon>
+        </div>
+        <div class="btn btn-sm add-button" data-toggle="modal" data-target="#addFlashcardModal">
+          +
+        </div>
+    </a>
+  </div>
+  <div class="flashcard-list" id="flashcard-list" *ngIf="!this.isEmpty()">
+    <app-flashcard-list [flashcardList]="this.getActiveFlashcardList()"></app-flashcard-list>
+  </div>
+  <div *ngIf="!this.isEmpty()">
+    <button mat-raised-button color="primary" class="test-button" (click)="run()">Começar teste</button>
+  </div>
+  <div *ngIf="this.isEmpty()">
+    <h5 class="display-4">Não há grupos disponíveis</h5>
+  </div>
+
 </div>
-<div class="flashcard-list" id="flashcard-list" *ngIf="!this.isEmpty()">
-  <app-flashcard-list [flashcardList]="this.getActiveFlashcardList()"></app-flashcard-list>
-</div>
-<div *ngIf="this.isEmpty()">
-  <h5 class="display-4">Não há grupos disponíveis</h5>
+
+<div *ngIf="this.testRunning">
+  <app-flashcard-container></app-flashcard-container>
 </div>
 
 <!-- Flashcard-add Modal -->
@@ -27,9 +37,6 @@
         </button>
       </div>
         <app-flashcard-form></app-flashcard-form>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-      </div>
     </div>
   </div>
 </div>
