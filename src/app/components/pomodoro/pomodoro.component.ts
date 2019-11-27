@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { faCog } from '@fortawesome/free-solid-svg-icons'
+import { FaConfig } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-pomodoro',
@@ -13,7 +15,7 @@ export class PomodoroComponent implements OnInit {
   isClockRunning: boolean = false;
   clockWasPaused: boolean = false;
   showConfig: boolean = true;
-  workSessionDuration: number = 60; // em segundos 25min
+  workSessionDuration: number = 60 * 25; // em segundos 25min
   currentTimeLeftInSession: number = this.workSessionDuration;
   breakSessionDuration: number = 300;
   timeSpentInCurrentSession: number = 0;
@@ -25,6 +27,7 @@ export class PomodoroComponent implements OnInit {
   pauseButton: HTMLElement;
   stopButton: HTMLElement;
   configButton: HTMLElement;
+  faCog = faCog;
 
   constructor() { }
 
@@ -59,6 +62,7 @@ export class PomodoroComponent implements OnInit {
       this.pauseButton.hidden = false;
       this.startButton.hidden = true;
       this.stopButton.hidden = false;
+      (<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animationPlayState = "running";
       (<HTMLInputElement>document.getElementById("pomodoro-clock-task")).disabled = true;
       this.toggleClock(false);
     });
@@ -66,6 +70,7 @@ export class PomodoroComponent implements OnInit {
     this.pauseButton.addEventListener('click', () => {
       this.pauseButton.hidden = true;
       this.startButton.hidden = false;
+      (<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animationPlayState = "paused";
       this.toggleClock(false);
     });
 
@@ -74,6 +79,7 @@ export class PomodoroComponent implements OnInit {
       this.startButton.hidden = false;
       this.stopButton.hidden = true;
       (<HTMLInputElement>document.getElementById("pomodoro-clock-task")).disabled = false;
+      (<HTMLDivElement>document.getElementById("circuloPomodoro")).style.removeProperty('animation');
       this.toggleClock(true);
     });
 
@@ -164,6 +170,10 @@ export class PomodoroComponent implements OnInit {
     this.workSessionDuration = workDurationInput ? parseInt(workDurationInput) * 60 : 25 * 60;
     this.currentTimeLeftInSession = this.workSessionDuration;
     this.breakSessionDuration = breakDurationInput ? parseInt(breakDurationInput) * 60 : 5 * 60;
+
+    console.log(this.workSessionDuration);
+    (<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animation = " offsettozero "+this.workSessionDuration+"s linear forwards ";
+
   }
 
   stepDown() {
@@ -205,7 +215,9 @@ export class PomodoroComponent implements OnInit {
       sessionLabel = 'Break'
     }
 
+    console.log(this.timeSpentInCurrentSession);
     let elapsedTime = Math.floor(this.timeSpentInCurrentSession / 60)
+    console.log(elapsedTime);
     //elapsedTime = elapsedTime > 0 ? elapsedTime : '< 1';
 
     const text = document.createTextNode(

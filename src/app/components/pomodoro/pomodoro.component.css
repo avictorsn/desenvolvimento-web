@@ -1,3 +1,57 @@
+.svgPlay{
+    animation-play-state: running;
+}
+
+.svgPause{
+    animation-play-state: paused;
+}
+
+.svgAnimation{
+    animation: offsettozero 1500s linear forwards paused;
+}
+
+svg {
+    transform: rotate(-90deg);
+    stroke-dasharray: 251; /* (2PI * 40px) */
+    stroke-dashoffset: 251;
+  }
+  
+  @keyframes offsettozero {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+#pomodoro-timer{
+    display: inline-block;
+    position: absolute;
+    top: 28vw;
+    left: 11vw;
+    transform: translate(0, -16vw);
+}
+
+circle{
+    stroke-width: 6px;
+}
+
+.rail{
+    stroke: yellow   ;
+}
+
+.progress{
+    stroke: red   ;
+}
+
+.cardPomodoro{
+    margin-top: 10%;
+}
+
+#showConfig{
+    cursor: pointer;
+    font-size: 2vw;
+
+}
+
 .pomodoro-clock-actions{
     display: block;
     margin-right: auto;
@@ -18,9 +72,6 @@
 }
 
 .pomodoro-container{
-    border: 1px solid;
-    border-radius: 5px;
-    padding-top: 10%;
 }
 
 #metasDoDia {

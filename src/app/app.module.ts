@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialsModule } from './materials/materials.module';
-
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 
 import { AppComponent } from './app.component';
@@ -84,7 +84,8 @@ import { SelectFlashcardGroupService } from './services/selectFlashcardGroup/sel
     FormsModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
-    MaterialsModule
+    MaterialsModule,
+    NgCircleProgressModule.forRoot({})
 
   ],
   providers: [ AlternaComponentesService, ApiService, SelectFlashcardGroupService, FlashcardListService ],
