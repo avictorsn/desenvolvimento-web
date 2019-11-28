@@ -1,10 +1,56 @@
-#circuloPomodoroSombra{
+#input-work-duration, #input-break-duration{
+    position: relative;
+    z-index: 3;
+}
+
+#matInputBreak{
+    margin-right: 0.5vw;
+}
+
+#pomodoro-clock-actions{
+    display: block;
+    margin: auto;
     position: absolute;
-    top: -1vw;
+    top: 1vw;
+    left: 3vw;
+    height: 5vw;
+}
+
+#pomodoro-info{
+    clear: both;
+}
+
+.inputParaPomodoro{
+    float:left;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+}
+
+#matInputBreak{
+    width: 12vw;
+}
+
+#matInputWork{
+    margin-right: 1vw;
+    width: 12vw;
+}
+
+#circuloPomodoroSombra{
+    border-style: solid; 
+    
+    position: absolute;
+    top: 4vw;
     left: 0vw;
 }
 
 #circuloPomodoro {
+    z-index: 1;
+    position: absolute;
+    border-style: solid;
+    top: 4vw;
+    left: 0vw;
     transform: rotate(-90deg);
     stroke-dasharray: 251; /* (2PI * 40px) */
     stroke-dashoffset: 251;
@@ -17,11 +63,9 @@
   }
   
 #pomodoro-timer{
-    display: inline-block;
     position: absolute;
-    top: 28vw;
+    top: 13vw;
     left: 11vw;
-    transform: translate(0, -16vw);
 }
 
 circle{
@@ -29,11 +73,10 @@ circle{
 }
 
 .rail{
-    stroke: yellow   ;
+    stroke: lightgrey   ;
 }
 
 .progress{
-    stroke-width: 7px;
     stroke: red   ;
 }
 
@@ -42,8 +85,16 @@ circle{
 }
 
 #showConfig{
+    text-align: center;
+    float: right;
     cursor: pointer;
-    font-size: 2vw;
+    font-size: 2.5vw;
+
+}
+
+#pomodoro-start , #pomodoro-pause, #pomodoro-stop{
+    cursor: pointer;
+    font-size: 3vw;
 
 }
 
@@ -55,6 +106,9 @@ circle{
 }
 
 #pomodoro-clock-task{
+    position: relative;
+    z-index: 2;
+    width: 15vw;
     display: block;
     margin-right: auto;
     margin-left: auto;

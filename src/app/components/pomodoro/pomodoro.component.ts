@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { faCog } from '@fortawesome/free-solid-svg-icons'
+import { faPlayCircle } from '@fortawesome/free-solid-svg-icons'
+import { faStopCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPauseCircle } from '@fortawesome/free-solid-svg-icons'
 import { FaConfig } from '@fortawesome/angular-fontawesome';
 
 @Component({
@@ -28,6 +31,9 @@ export class PomodoroComponent implements OnInit {
   stopButton: HTMLElement;
   configButton: HTMLElement;
   faCog = faCog;
+  faPlayCircle = faPlayCircle;
+  faStopCircle = faStopCircle;
+  faPauseCircle = faPauseCircle;
 
   constructor() { }
 
@@ -51,11 +57,16 @@ export class PomodoroComponent implements OnInit {
     this.configButton = document.querySelector('#showConfig');
 
     this.configButton.addEventListener('click', () => {
-      
-      this.showConfig = !this.showConfig;
 
-      (<HTMLInputElement>document.querySelector('#input-work-duration')).hidden = this.showConfig;
-      (<HTMLInputElement>document.querySelector('#input-break-duration')).hidden = this.showConfig;
+      if(this.showConfig){
+        (<HTMLDivElement>document.querySelector('.inputParaPomodoro')).setAttribute( "style", "visibility: visible; opacity: 1; transition-delay: 0s;");
+        this.showConfig = false;
+      }else{
+        this.showConfig = true;
+        (<HTMLDivElement>document.querySelector('.inputParaPomodoro')).setAttribute( "style", "visibility: hidden; opacity: 0; transition: visibility 0s linear 0.33s, opacity 0.33s linear;");
+      }
+    
+      
     });
 
     this.startButton.addEventListener('click', () => {
@@ -173,7 +184,6 @@ export class PomodoroComponent implements OnInit {
 
     let atraso = (this.workSessionDuration / 60) * 9
     this.workSessionDuration+=atraso;
-    console.log(this.workSessionDuration);
     (<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animation = " offsettozero "+this.workSessionDuration+"s linear forwards ";
 
   }
