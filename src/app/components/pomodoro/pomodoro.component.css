@@ -1,3 +1,14 @@
+#salvarEstudos{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    height: 30%;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 1.2em;
+}
+
 #inputMetasDoDia{
     width: 20vw;
     height: 2.2vw;
@@ -5,7 +16,6 @@
 
 .pomodoroBottom{
     height: 10vw;
-    background-color: black;
 }
 
 #cardResumoAtividades{
@@ -30,6 +40,7 @@
 
 #listaMetasDoDia{
     height: 13vw;
+    background-color: lightgrey;
 }
 
 #input-work-duration, #input-break-duration{

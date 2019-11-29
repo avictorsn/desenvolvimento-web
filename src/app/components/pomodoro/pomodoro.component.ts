@@ -3,7 +3,7 @@ import { faCog } from '@fortawesome/free-solid-svg-icons'
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons'
 import { faStopCircle } from '@fortawesome/free-solid-svg-icons'
 import { faPauseCircle } from '@fortawesome/free-solid-svg-icons'
-import { FaConfig } from '@fortawesome/angular-fontawesome';
+import { PomodoroService } from 'src/app/services/pomodoro/pomodoro.service';
 
 @Component({
   selector: 'app-pomodoro',
@@ -25,18 +25,24 @@ export class PomodoroComponent implements OnInit {
   timeSpentInCurrentSession: number = 0;
   typeSession: string = "Work";
   clockTimer: any;
+  listaMetasConcluidas: string[] = [];
+  listaAtividades: [[string, number]] = [null];
 
   pomodoroTimer: HTMLElement;
   startButton: HTMLElement;
   pauseButton: HTMLElement;
   stopButton: HTMLElement;
   configButton: HTMLElement;
+  salvarEstudosButton: HTMLElement;
+  metasComCheck: HTMLCollectionOf<Element>;
+  resumoAtividades: HTMLCollectionOf<Element>;
   faCog = faCog;
   faPlayCircle = faPlayCircle;
   faStopCircle = faStopCircle;
   faPauseCircle = faPauseCircle;
 
-  constructor() { }
+
+  constructor(private pomodoroService: PomodoroService) { }
 
   ngOnInit() {
 
@@ -56,6 +62,39 @@ export class PomodoroComponent implements OnInit {
     this.pauseButton = document.querySelector('#pomodoro-pause');
     this.stopButton = document.querySelector('#pomodoro-stop');
     this.configButton = document.querySelector('#showConfig');
+    this.salvarEstudosButton = document.querySelector('#salvarEstudos');
+
+
+    this.salvarEstudosButton.addEventListener('click', () => {
+      //Limpar pomodoro
+      this.stopButton.click();
+      //Salvar metas com check, e limpar
+
+      this.retornaElementosDasListas().then(() =>
+        this.limpaDadosDoComponentePomodoro()
+      );
+
+
+      // Após salvar apagar a lista
+      for (let i = 0; i < this.metasComCheck.length; i++) {
+        let meta = this.metasComCheck[i].textContent;
+        meta = meta.substring(0, meta.length - 1);
+
+        this.listaMetasConcluidas.push(meta);
+      }
+
+      for (let i = 0; i < this.resumoAtividades.length; i++) {
+        let atividade = this.resumoAtividades[i].textContent;
+        let duracao = parseInt(atividade.slice(atividade.indexOf(":") + 2, atividade.indexOf("m") - 1));
+        atividade = atividade.slice(0, atividade.indexOf(":") - 1);
+
+        this.listaAtividades.push([atividade, duracao]);
+      }
+
+      this.pomodoroService.setPomodoro(this.listaMetasConcluidas, this.listaAtividades);
+
+
+    });
 
     this.configButton.addEventListener('click', () => {
 
@@ -97,6 +136,18 @@ export class PomodoroComponent implements OnInit {
 
 
 
+  }
+
+  limpaDadosDoComponentePomodoro() {
+    document.getElementById("listaMetasDoDia").innerHTML = "";
+    //Salvar título e tempo, para os elementos do resumo e limpar
+    document.getElementById("pomodoro-sessions").innerHTML = "";
+  }
+
+  retornaElementosDasListas(): Promise<any> {
+    this.metasComCheck = document.getElementsByClassName('checked');
+    this.resumoAtividades = document.getElementsByClassName('resumoAtividade');
+    return Promise.resolve(function (v) { });
   }
 
 
@@ -227,6 +278,7 @@ export class PomodoroComponent implements OnInit {
     const sessionsList = document.querySelector('#pomodoro-sessions');
     // append li to it
     const li = document.createElement('li');
+    li.classList.add("resumoAtividade");
     let sessionLabel = currentTaskLabel ? currentTaskLabel : 'Work'
 
     let elapsedTime = Math.floor(this.workSessionDuration / 60)

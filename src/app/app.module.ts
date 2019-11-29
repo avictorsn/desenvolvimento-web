@@ -45,6 +45,7 @@ import { ChangeBackgroundDirective } from './directives/change-background.direct
 import { ApiService } from './services/api/api.service';
 import { AlternaComponentesService } from './services/alternaComponetes/alterna-componentes.service';
 import { SelectFlashcardGroupService } from './services/selectFlashcardGroup/select-flashcard-group.service';
+import { PomodoroService } from './services/pomodoro/pomodoro.service';
 
 
 
@@ -88,7 +89,7 @@ import { SelectFlashcardGroupService } from './services/selectFlashcardGroup/sel
     NgCircleProgressModule.forRoot({})
 
   ],
-  providers: [ AlternaComponentesService, ApiService, SelectFlashcardGroupService, FlashcardListService ],
+  providers: [ AlternaComponentesService, ApiService, SelectFlashcardGroupService, FlashcardListService, PomodoroService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
