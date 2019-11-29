@@ -1,3 +1,23 @@
+.overflow-auto::-webkit-scrollbar {
+    width: 12px;
+}
+
+.overflow-auto::-webkit-scrollbar-track {
+    box-shadow: black;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+
+.overflow-auto::-webkit-scrollbar-thumb {
+    box-shadow: black;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+#listaMetasDoDia{
+    height: 20vw;
+}
+
 #input-work-duration, #input-break-duration{
     position: relative;
     z-index: 3;
@@ -11,7 +31,7 @@
     display: block;
     margin: auto;
     position: absolute;
-    top: 1vw;
+    top: 0.6vw;
     left: 3vw;
     height: 5vw;
 }
@@ -34,12 +54,11 @@
 
 #matInputWork{
     margin-right: 1vw;
+    height: 2vw;
     width: 12vw;
 }
 
-#circuloPomodoroSombra{
-    border-style: solid; 
-    
+#circuloPomodoroSombra{    
     position: absolute;
     top: 4vw;
     left: 0vw;
@@ -48,7 +67,6 @@
 #circuloPomodoro {
     z-index: 1;
     position: absolute;
-    border-style: solid;
     top: 4vw;
     left: 0vw;
     transform: rotate(-90deg);
@@ -130,7 +148,7 @@ circle{
     text-align: center;
 }
   
-:host ::ng-deep ul li {
+:host ::ng-deep #metasDoDia ul li {
     cursor: pointer;
     position: relative;
     padding: 12px 8px 12px 40px;
@@ -148,24 +166,24 @@ circle{
   
 
   /* Set all odd list items to a different color (zebra-stripes) */
-:host ::ng-deep ul li:nth-child(odd) {
+:host ::ng-deep #metasDoDia ul li:nth-child(odd) {
     background: #f9f9f9;
 }
   
   /* Darker background-color on hover */
-:host ::ng-deep ul li:hover {
+:host ::ng-deep #metasDoDia ul li:hover {
     background: #ddd;
 }
   
 /* When clicked on, add a background color and strike out text */
-:host ::ng-deep ul li.checked {
+:host ::ng-deep #metasDoDia ul li.checked {
     background: #72E873;
     color: #fff;
     text-decoration: line-through;
 }
   
   /* Add a "checked" mark when clicked on */
-:host ::ng-deep ul li.checked::before {
+:host ::ng-deep #metasDoDia ul li.checked::before {
     content: '';
     position: absolute;
     border-color: #fff;
@@ -177,4 +195,29 @@ circle{
     transform: rotate(45deg);
     height: 15px;
     width: 7px;
+}
+
+:host ::ng-deep #pomodoro-sessions {
+    padding: 0;
+}
+
+:host ::ng-deep #pomodoro-sessions li{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    cursor: pointer;
+    position: relative;
+    padding: 4px 8px 4px 40px;
+    list-style-type: none;
+    background: #eee;
+    font-size: 16px;
+    transition: 0.2s;
+    
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+:host ::ng-deep #pomodoro-sessions li:nth-child(odd) {
+    background: #f9f9f9;
 }

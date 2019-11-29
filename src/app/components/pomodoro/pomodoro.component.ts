@@ -20,6 +20,7 @@ export class PomodoroComponent implements OnInit {
   showConfig: boolean = true;
   workSessionDuration: number = 60 * 25; // em segundos 25min
   currentTimeLeftInSession: number = this.workSessionDuration;
+  clockLate: number = (this.workSessionDuration / 60) * 9;
   breakSessionDuration: number = 300;
   timeSpentInCurrentSession: number = 0;
   typeSession: string = "Work";
@@ -58,15 +59,15 @@ export class PomodoroComponent implements OnInit {
 
     this.configButton.addEventListener('click', () => {
 
-      if(this.showConfig){
-        (<HTMLDivElement>document.querySelector('.inputParaPomodoro')).setAttribute( "style", "visibility: visible; opacity: 1; transition-delay: 0s;");
+      if (this.showConfig) {
+        (<HTMLDivElement>document.querySelector('.inputParaPomodoro')).setAttribute("style", "visibility: visible; opacity: 1; transition-delay: 0s;");
         this.showConfig = false;
-      }else{
+      } else {
         this.showConfig = true;
-        (<HTMLDivElement>document.querySelector('.inputParaPomodoro')).setAttribute( "style", "visibility: hidden; opacity: 0; transition: visibility 0s linear 0.33s, opacity 0.33s linear;");
+        (<HTMLDivElement>document.querySelector('.inputParaPomodoro')).setAttribute("style", "visibility: hidden; opacity: 0; transition: visibility 0s linear 0.33s, opacity 0.33s linear;");
       }
-    
-      
+
+
     });
 
     this.startButton.addEventListener('click', () => {
@@ -178,13 +179,13 @@ export class PomodoroComponent implements OnInit {
   ajustaTempo() {
     let workDurationInput = (<HTMLInputElement>document.querySelector('#input-work-duration')).value;
     let breakDurationInput = (<HTMLInputElement>document.querySelector('#input-break-duration')).value;
-    this.workSessionDuration = workDurationInput ? parseInt(workDurationInput) * 60 : 25 * 60;
+    this.workSessionDuration = workDurationInput ? parseInt(workDurationInput) * 60 : 5;//25 * 60;
     this.currentTimeLeftInSession = this.workSessionDuration;
-    this.breakSessionDuration = breakDurationInput ? parseInt(breakDurationInput) * 60 : 5 * 60;
+    this.breakSessionDuration = breakDurationInput ? parseInt(breakDurationInput) * 60 : 5;//5 * 60;
 
-    let atraso = (this.workSessionDuration / 60) * 9
-    this.workSessionDuration+=atraso;
-    (<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animation = " offsettozero "+this.workSessionDuration+"s linear forwards ";
+    this.clockLate = (this.workSessionDuration / 60) * 20
+    let timeWithDelay = this.workSessionDuration + this.clockLate;
+    (<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animation = " offsettozero " + timeWithDelay + "s linear forwards infinite";
 
   }
 
@@ -197,12 +198,17 @@ export class PomodoroComponent implements OnInit {
       this.timeSpentInCurrentSession = 0;
       // Timer is over -> if work switch to break, viceversa
       if (this.typeSession === 'Break') {
+        //clearInterval(this.clockTimer);
         this.currentTimeLeftInSession = this.workSessionDuration;
         this.displaySessionLog('Break');
         this.typeSession = 'Work';
+        this.stopButton.click();
+        //(<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animation = " offsettozero " + timeWithDelay + "s linear reverse infinite";
+        //(<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animationPlayState = "running";
         //(<HTMLInputElement>document.getElementById("pomodoro-clock-task")).disabled = false;
 
       } else {
+        (<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animationPlayState = "paused";
         this.currentTimeLeftInSession = this.breakSessionDuration;
         this.displaySessionLog('Work');
         this.typeSession = 'Break';
@@ -223,13 +229,14 @@ export class PomodoroComponent implements OnInit {
     const li = document.createElement('li');
     let sessionLabel = currentTaskLabel ? currentTaskLabel : 'Work'
 
+    let elapsedTime = Math.floor(this.workSessionDuration / 60)
+
     if (this.typeSession === 'Break') {
       sessionLabel = 'Break'
+      elapsedTime = Math.floor(this.breakSessionDuration / 60)
     }
 
-    console.log(this.timeSpentInCurrentSession);
-    let elapsedTime = Math.floor(this.timeSpentInCurrentSession / 60)
-    console.log(elapsedTime);
+
     //elapsedTime = elapsedTime > 0 ? elapsedTime : '< 1';
 
     const text = document.createTextNode(
@@ -243,7 +250,7 @@ export class PomodoroComponent implements OnInit {
 
   stopClock() {
 
-    this.displaySessionLog(this.typeSession);
+    //this.displaySessionLog(this.typeSession);
     this.typeSession = "Work";
     this.clockWasPaused = false;
 
@@ -254,7 +261,7 @@ export class PomodoroComponent implements OnInit {
     // 2) update our variable to know that the timer is stopped
     this.isClockRunning = false;
     // reset the time left in the session to its original state
-    this.currentTimeLeftInSession = this.workSessionDuration;
+    this.currentTimeLeftInSession = this.workSessionDuration - this.clockLate;
     // update the timer displayed
     this.displayCurrentTimeLeftInSession();
 
