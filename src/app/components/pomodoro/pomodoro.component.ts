@@ -17,6 +17,7 @@ export class PomodoroComponent implements OnInit {
 
   isClockRunning: boolean = false;
   clockWasPaused: boolean = false;
+  listaAtividadesVazia: boolean = true;
   showConfig: boolean = true;
   workSessionDuration: number = 60 * 25; // em segundos 25min
   currentTimeLeftInSession: number = this.workSessionDuration;
@@ -26,7 +27,7 @@ export class PomodoroComponent implements OnInit {
   typeSession: string = "Work";
   clockTimer: any;
   listaMetasConcluidas: string[] = [];
-  listaAtividades: [[string, number]] = [null];
+  listaAtividades = [];
 
   pomodoroTimer: HTMLElement;
   startButton: HTMLElement;
@@ -83,6 +84,7 @@ export class PomodoroComponent implements OnInit {
         this.listaMetasConcluidas.push(meta);
       }
 
+
       for (let i = 0; i < this.resumoAtividades.length; i++) {
         let atividade = this.resumoAtividades[i].textContent;
         let duracao = parseInt(atividade.slice(atividade.indexOf(":") + 2, atividade.indexOf("m") - 1));
@@ -93,6 +95,7 @@ export class PomodoroComponent implements OnInit {
 
       this.pomodoroService.setPomodoro(this.listaMetasConcluidas, this.listaAtividades);
 
+      this.listaAtividadesVazia = true;
 
     });
 
@@ -217,12 +220,14 @@ export class PomodoroComponent implements OnInit {
           this.ajustaTempo();
         }
 
+        this.displayCurrentTimeLeftInSession();
         this.clockTimer = setInterval(() => {
           // decrease time left / increase time spent
           //this.currentTimeLeftInSession = this.currentTimeLeftInSession - 1;
           this.stepDown();
           this.displayCurrentTimeLeftInSession();
         }, 1000);
+
       }
     }
   }
@@ -230,9 +235,9 @@ export class PomodoroComponent implements OnInit {
   ajustaTempo() {
     let workDurationInput = (<HTMLInputElement>document.querySelector('#input-work-duration')).value;
     let breakDurationInput = (<HTMLInputElement>document.querySelector('#input-break-duration')).value;
-    this.workSessionDuration = workDurationInput ? parseInt(workDurationInput) * 60 : 5;//25 * 60;
+    this.workSessionDuration = workDurationInput ? parseInt(workDurationInput) * 60 : 25 * 60;
     this.currentTimeLeftInSession = this.workSessionDuration;
-    this.breakSessionDuration = breakDurationInput ? parseInt(breakDurationInput) * 60 : 5;//5 * 60;
+    this.breakSessionDuration = breakDurationInput ? parseInt(breakDurationInput) * 60 : 5 * 60;
 
     this.clockLate = (this.workSessionDuration / 60) * 20
     let timeWithDelay = this.workSessionDuration + this.clockLate;
@@ -263,6 +268,11 @@ export class PomodoroComponent implements OnInit {
         this.currentTimeLeftInSession = this.breakSessionDuration;
         this.displaySessionLog('Work');
         this.typeSession = 'Break';
+
+        const sessionsList = document.querySelector('#pomodoro-sessions');
+        if (sessionsList.hasChildNodes()) {
+          this.listaAtividadesVazia = false;
+        }
         //(<HTMLInputElement>document.getElementById("pomodoro-clock-task")).disabled = true;
 
       }
@@ -313,7 +323,7 @@ export class PomodoroComponent implements OnInit {
     // 2) update our variable to know that the timer is stopped
     this.isClockRunning = false;
     // reset the time left in the session to its original state
-    this.currentTimeLeftInSession = this.workSessionDuration - this.clockLate;
+    this.currentTimeLeftInSession = this.workSessionDuration;
     // update the timer displayed
     this.displayCurrentTimeLeftInSession();
 
