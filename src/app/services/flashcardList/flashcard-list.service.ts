@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Flashcard } from './../../models/flashcard.model';
 import { Injectable } from '@angular/core';
-import { stringify } from 'querystring';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,42 +9,56 @@ import { stringify } from 'querystring';
 export class FlashcardListService {
 
   //  Interpretar qual a lista correta a partir do grupo ativo;
-  activeFlashcardList: Flashcard[];
+  activeFlashcardList: string;
+  urlFlashcard = 'http://localhost:3000/api/flashcards';
 
-  flashcardList1: Flashcard[] = [
-    {id: '1', group: 'grupo', question: 'Questão 1', answer: 'Não sei'},
-    {id: '2', group: 'grupo', question: 'Questão 2', answer: 'Não sei'},
-    {id: '3', group: 'grupo', question: 'Questão 3', answer: 'Não sei'}
-  ];
-
-  flashcardList2: Flashcard[] = [
-    {id: '1', group: 'grupo', question: 'Questão 4', answer: 'Não sei'},
-    {id: '2', group: 'grupo', question: 'Questão 5', answer: 'Não sei'},
-    {id: '3', group: 'grupo', question: 'Questão 6', answer: 'Não sei'}
-  ];
-
-  flashcardList3: Flashcard[] = [
-    {id: '1', group: 'grupo', question: 'Questão 7', answer: 'Não sei'},
-    {id: '2', group: 'grupo', question: 'Questão 8', answer: 'Não sei'},
-    {id: '3', group: 'grupo', question: 'Questão 9', answer: 'Não sei'}];
-
-    flashcardGroups = [this.flashcardList1, this.flashcardList2, this.flashcardList3];
-
-    constructor() {
-      this.activeFlashcardList = this.flashcardGroups[0];
+    constructor(private http: HttpClient) {
      }
 
   changeActiveFlashcardList(id) {
-    this.activeFlashcardList = this.flashcardGroups[parseInt(id, 10) - 1];
+    this.activeFlashcardList = id;
   }
 
-  removeList(id) {
-    this.flashcardGroups.splice((parseInt(id, 10) - 1), 1);
+  removeFlashcard(id) {
+    this.http.delete(this.urlFlashcard + '/' + id).toPromise().then(() => {
+      console.log('Flashcard removido com sucesso!');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
-  addToList(question, answer) {
-    const flashcard: Flashcard = {id: (this.activeFlashcardList.length + 1).toString(), group: 'grupo', question, answer};
-    this.activeFlashcardList.push(flashcard);
+  addToList(group, question, answer) {
+    const flashcard: Flashcard = {group, question, answer};
+    this.http.post(this.urlFlashcard, flashcard).toPromise().then((res) => {
+      console.log('Flashcard adicionado com sucesso!');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    return flashcard;
+  }
+
+
+
+  getList(group) {
+    let list = [];
+    this.http.get<Flashcard[]>(this.urlFlashcard + '?grupo="' + group + '"').pipe(map(res => res)).subscribe((data) => {
+      list = data;
+    });
+    return list;
+  }
+
+
+  getAll() {
+    return this.http.get<Flashcard[]>(this.urlFlashcard).pipe(map(res => res));
+  }
+
+  list(flashcardList, group) {
+    let results = [];
+    results = flashcardList.filter((flashcard) => (flashcard.group === group));
+
+    return results;
   }
 
 }

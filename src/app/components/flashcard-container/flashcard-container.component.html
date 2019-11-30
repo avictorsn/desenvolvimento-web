@@ -14,14 +14,14 @@
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-icon-button class="previous-button" color="accent" (click)="goToPrevious()">
+    <button mat-icon-button class="previous-button icons" color="accent" (click)="goToPrevious()" *ngIf="hasPrevious()">
       <fa-icon [icon]="faArrowLeft"></fa-icon>
     </button>
     <button mat-raised-button class="reveal-button" *ngIf="!showAnswer" (click)="revealAnswer()">Revelar resposta</button>
-    <button mat-icon-button (click)="rightOrWrong()" [@answerButtonColor]="rightAnswer" *ngIf="showAnswer">
+    <button mat-icon-button (click)="rightOrWrong()" [@answerButtonColor]="rightAnswer" *ngIf="showAnswer" class="icons">
       <fa-icon [icon]="faCheckCircle" style="font-size:25px"></fa-icon>
     </button>
-    <button mat-icon-button class="next-button" color="accent" (click)="goToNext()">
+    <button mat-icon-button class="next-button icons" color="accent" (click)="goToNext()" *ngIf="hasNext()">
       <fa-icon [icon]="faArrowRight"></fa-icon>
     </button>
   </mat-card-actions>

@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialsModule } from './materials/materials.module';
-import { NgCircleProgressModule } from 'ng-circle-progress';
+// import { NgCircleProgressModule } from 'ng-circle-progress';
 
 
 import { AppComponent } from './app.component';
@@ -86,7 +86,7 @@ import { PomodoroService } from './services/pomodoro/pomodoro.service';
     FontAwesomeModule,
     BrowserAnimationsModule,
     MaterialsModule,
-    NgCircleProgressModule.forRoot({})
+    // NgCircleProgressModule.forRoot({})
 
   ],
   providers: [ AlternaComponentesService, ApiService, SelectFlashcardGroupService, FlashcardListService, PomodoroService ],

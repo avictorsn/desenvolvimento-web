@@ -1,5 +1,5 @@
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import {faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 import {faCheckCircle} from '@fortawesome/free-solid-svg-icons';
@@ -36,7 +36,6 @@ import { FlashcardListService } from './../../services/flashcardList/flashcard-l
 })
 export class FlashcardContainerComponent implements OnInit {
 
-  flashcardList = [];
   flashcardIndex: number;
   faArrowLeft = faArrowLeft;
   faArrowRight = faArrowRight;
@@ -45,8 +44,10 @@ export class FlashcardContainerComponent implements OnInit {
   showAnswer = false;
   rightAnswer = false;
 
+  @Input() flashcardList: string;
+
   constructor(flashcardListService: FlashcardListService) {
-    this.flashcardList = flashcardListService.activeFlashcardList;
+    // this.flashcardList = flashcardListService.getList(this.group);
     this.flashcardIndex = 0;
   }
 
@@ -74,5 +75,19 @@ export class FlashcardContainerComponent implements OnInit {
   rightOrWrong() {
     this.rightAnswer = !this.rightAnswer;
 
+  }
+
+  hasPrevious() {
+    if (this.flashcardIndex === 0) {
+      return false;
+    }
+    return true;
+  }
+
+  hasNext() {
+    if (this.flashcardIndex === (this.flashcardList.length - 1)) {
+      return false;
+    }
+    return true;
   }
 }

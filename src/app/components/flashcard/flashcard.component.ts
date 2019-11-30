@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
-@Component({
+@Component ({
   selector: 'app-flashcard',
   templateUrl: './flashcard.component.html',
   styleUrls: ['./flashcard.component.css']

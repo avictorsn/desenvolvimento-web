@@ -1,5 +1,6 @@
 export class Flashcard {
-  id?: string;
+  // tslint:disable-next-line:variable-name
+  _id?: string;
   group: string;
   question: string;
   answer: string;

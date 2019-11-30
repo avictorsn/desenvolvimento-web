@@ -1,7 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
 import { Flashcard } from './../../models/flashcard.model';
+import { FlashcardListService } from './../../services/flashcardList/flashcard-list.service';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { faTrashAlt, faSearch, faEye } from '@fortawesome/free-solid-svg-icons';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+
 
 @Component({
   selector: 'app-flashcard-list',
@@ -14,35 +16,42 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     ])
   ]
 })
-export class FlashcardListComponent implements OnInit {
+export class FlashcardListComponent implements OnInit, OnChanges {
 
   faTrashAlt = faTrashAlt;
   faSearch = faSearch;
   faEye = faEye;
+  listWasLoaded = false;
+  selectedFlashcardAnswer: string;
 
   @Input() flashcardList: Flashcard[];
+  @Output() sliceMe =  new EventEmitter();
 
-  constructor() {
+  constructor(private flashcardService: FlashcardListService) {
   }
 
   ngOnInit() {
 
   }
 
+  ngOnChanges() {
 
-  showMe(id) {
-    const flashcard = this.flashcardList.find((element) => element.id === id);
-    console.log(flashcard);
+  }
 
+
+  selectFlashcard(flashcardAnswer) {
+    this.selectedFlashcardAnswer = flashcardAnswer;
   }
 
   removeMe(id) {
-    const flashcard = this.flashcardList.find((element) => element.id === id);
-    const index = this.flashcardList.indexOf(flashcard);
-    this.flashcardList.splice(index, 1);
-
+    this.flashcardService.removeFlashcard(id);
+    this.sliceMe.emit(id);
   }
 
+  showMe(flashcard) {
+    console.log(flashcard);
+
+  }
 
   resetRemoveState() {
   }

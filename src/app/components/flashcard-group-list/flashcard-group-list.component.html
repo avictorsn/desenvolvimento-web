@@ -1,8 +1,8 @@
-<div *ngIf="!this.testRunning">
+<div *ngIf="!this.testRunning && groupListLoaded">
   <div class="list-group" *ngFor="let group of flashcardGroupList">
-    <a class="list-group-item list-group-item-action" (click)="showMe(group.id)" [ngClass]="{'active': this.selectionService.activeFlashcardGroup == group.id}">
+    <a class="list-group-item list-group-item-action" (click)="showMe(group._id)" [ngClass]="{'active': this.getActiveFlashcardGroup() == group._id}">
       {{group.groupname}}
-        <div class="btn btn-sm add-button" (click)="removeMe(group.id)">
+        <div class="btn btn-sm add-button" (click)="removeMe(group._id)">
             <fa-icon [icon]="faTrashAlt"></fa-icon>
         </div>
         <div class="btn btn-sm add-button" data-toggle="modal" data-target="#addFlashcardModal">
@@ -11,7 +11,7 @@
     </a>
   </div>
   <div class="flashcard-list" id="flashcard-list" *ngIf="!this.isEmpty()">
-    <app-flashcard-list [flashcardList]="this.getActiveFlashcardList()"></app-flashcard-list>
+    <app-flashcard-list [flashcardList]="this.getActiveFlashcardList()" (sliceMe)="sliceLocalFlashcardList($event)" *ngIf="flashcardListLoaded"></app-flashcard-list>
   </div>
   <div *ngIf="!this.isEmpty()">
     <button mat-raised-button color="primary" class="test-button" (click)="run()">Começar teste</button>
@@ -22,8 +22,8 @@
 
 </div>
 
-<div *ngIf="this.testRunning">
-  <app-flashcard-container></app-flashcard-container>
+<div *ngIf="this.testRunning && groupListLoaded">
+  <app-flashcard-container [flashcardList]="this.getActiveFlashcardList()"></app-flashcard-container>
 </div>
 
 <!-- Flashcard-add Modal -->
@@ -36,7 +36,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <app-flashcard-form></app-flashcard-form>
+        <app-flashcard-form (pushMe)="refreshFlashcardList($event)"></app-flashcard-form>
     </div>
   </div>
 </div>

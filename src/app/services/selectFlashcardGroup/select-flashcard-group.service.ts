@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { FlashcardGroup } from './../../models/flashcardGroup.model';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -7,20 +9,35 @@ import { Injectable } from '@angular/core';
 export class SelectFlashcardGroupService {
 
   activeFlashcardGroup: string;
-  flashcardGroupList: FlashcardGroup[] = [{id: '1', groupname: 'Grupo1'}, {id: '2', groupname: 'Grupo2'}, {id: '3', groupname: 'Grupo3'}];
-  constructor() { }
+  // flashcardGroupList: FlashcardGroup[];
+  urlFlashcardGroup = 'http://localhost:3000/api/flashcardgroups';
 
+  constructor(private http: HttpClient) { }
 
-  changeFlashcard(id) {
+  getFlashcardGroupList() {
+    return this.http.get<FlashcardGroup[]>(this.urlFlashcardGroup).pipe(map(res => res));
+  }
+
+  changeActiveFlashcardGroup(id) {
     this.activeFlashcardGroup = id;
   }
 
   removeGroup(id) {
-
+    this.http.delete(this.urlFlashcardGroup + '/' + id).toPromise().then(() => {
+      console.log('Grupo removido com sucesso!');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
-  addGroup(name) {
-    const flashcardGroup: FlashcardGroup = {id: (this.flashcardGroupList.length + 1).toString(), groupname: name };
-    this.flashcardGroupList.push(flashcardGroup);
+  addGroup(groupname) {
+    const flashcardGroup: FlashcardGroup = { groupname };
+    this.http.post(this.urlFlashcardGroup, flashcardGroup).toPromise().then(() => {
+      console.log('Grupo adicionado com sucesso!');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 }

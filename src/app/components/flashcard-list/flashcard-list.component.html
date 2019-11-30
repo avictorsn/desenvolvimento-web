@@ -1,10 +1,10 @@
-<div data-spy="scroll" class="list-group flashcard-list" *ngFor="let flashcard of flashcardList">
-  <a class="list-group-item list-group-item-action flashcard-item" (click)="showMe(flashcard.id)">
+<div data-spy="scroll" class="list-group flashcard-list" *ngFor="let flashcard of this.flashcardList">
+  <a class="list-group-item list-group-item-action flashcard-item" (click)="showMe(flashcard)">
     {{flashcard.question}}
-    <div class="btn btn-sm add-button" (click)="removeMe(flashcard.id)" >
+    <div class="btn btn-sm add-button" (click)="removeMe(flashcard._id)" >
       <fa-icon [icon]="faTrashAlt"></fa-icon>
     </div>
-    <div class="btn btn-sm add-button" data-toggle="modal" data-target="#flashcardDetailsModal">
+    <div class="btn btn-sm add-button" data-toggle="modal" data-target="#flashcardDetailsModal" (click)="selectFlashcard(flashcard.answer)">
         <fa-icon [icon]="faEye"></fa-icon>
     </div>
   </a>
@@ -20,7 +20,7 @@
           </button>
         </div>
         <div class="modal-body">
-          {{flashcard.answer}}
+          {{ selectedFlashcardAnswer }}
         </div>
         <div class="modal-footer">
         </div>

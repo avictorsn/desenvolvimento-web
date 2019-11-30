@@ -21,3 +21,10 @@
   background-color: #369;
   color: white;
 }
+.reveal-button:focus{
+  outline: none;
+}
+
+.icons{
+  outline: none;
+}

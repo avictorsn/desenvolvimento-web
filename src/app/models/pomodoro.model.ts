@@ -1,7 +1,10 @@
 export class Pomodoro {
-    id?: string;
+  // tslint:disable-next-line:variable-name
+  _id?: string;
     checklist: string[];
-    sessions: [[string,number]];
+    session: [{
+      title: string,
+      duration: string
+    }];
     date: Date;
   }
-  

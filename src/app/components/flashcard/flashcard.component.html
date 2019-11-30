@@ -1,22 +1,13 @@
 <mat-sidenav-container>
   <mat-sidenav opened #sidenav [(opened)]="sidenavOpened" (click)="sidenav.toggle()">
-    <a class="flashcard-main-button" (click)="create()">Criar grupo de flashcards</a>
-    <a class="flashcard-main-button" (click)="load()">Abrir grupo de flashcards</a>
+    <button class="btn btn-sm flashcard-main-button" (click)="create()">Criar grupo de flashcards</button>
+    <button class="btn btn-sm flashcard-main-button" (click)="load()">Abrir grupo de flashcards</button>
   </mat-sidenav>
   <mat-sidenav-content>
       <fa-icon [icon]="faBars" style="font-size: 20px;color: white" (click)="sidenav.toggle()"></fa-icon>
   </mat-sidenav-content>
 </mat-sidenav-container>
-<!-- <div class="container static-div">
-  <div class="nav text-center row">
-    <div class="nav-item col">
-      <a class="nav-link flashcard-main-button" (click)="create()">Criar grupo de flashcards</a>
-    </div>
-    <div class="nav-item col">
-      <a class="nav-link flashcard-main-button" (click)="load()">Abrir grupo de flashcards</a>
-    </div>
-  </div>
-</div> -->
+
 <div class="dinamic-div">
   <div class="container margin-container text-center">
     <div *ngIf="eventClicked == 'create'">
@@ -26,5 +17,4 @@
       <app-flashcard-group-list></app-flashcard-group-list>
     </div>
   </div>
-  <!-- <app-flashcard-container class="text-center" [loaded]="wasLoaded"></app-flashcard-container> -->
 </div>

@@ -1,7 +1,7 @@
 .flashcard-main-button{
-  margin-left: 3em;
-  height: 2em;
-  padding: 5%;
+  margin-left: 4em;
+  /* height: 2em; */
+  /* padding: 5%; */
   background-color: #72E873;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .mat-sidenav, .mat-sidenav-content{
-  padding: 16px;
+  padding: 20px;
 }
 
 .mat-sidenav-content{
@@ -30,7 +30,7 @@
 }
 
 .mat-sidenav{
-  width: 80%;
+  width: 90%;
   background: transparent;
 
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { faCog } from '@fortawesome/free-solid-svg-icons'
-import { faPlayCircle } from '@fortawesome/free-solid-svg-icons'
-import { faStopCircle } from '@fortawesome/free-solid-svg-icons'
-import { faPauseCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
+import { faStopCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPauseCircle } from '@fortawesome/free-solid-svg-icons';
 import { PomodoroService } from 'src/app/services/pomodoro/pomodoro.service';
 
 @Component({
@@ -15,16 +15,16 @@ import { PomodoroService } from 'src/app/services/pomodoro/pomodoro.service';
 
 export class PomodoroComponent implements OnInit {
 
-  isClockRunning: boolean = false;
-  clockWasPaused: boolean = false;
-  listaAtividadesVazia: boolean = true;
-  showConfig: boolean = true;
+  isClockRunning = false;
+  clockWasPaused = false;
+  listaAtividadesVazia = true;
+  showConfig = true;
   workSessionDuration: number = 60 * 25; // em segundos 25min
   currentTimeLeftInSession: number = this.workSessionDuration;
   clockLate: number = (this.workSessionDuration / 60) * 9;
-  breakSessionDuration: number = 300;
-  timeSpentInCurrentSession: number = 0;
-  typeSession: string = "Work";
+  breakSessionDuration = 300;
+  timeSpentInCurrentSession = 0;
+  typeSession = 'Work';
   clockTimer: any;
   listaMetasConcluidas: string[] = [];
   listaAtividades = [];
@@ -48,11 +48,11 @@ export class PomodoroComponent implements OnInit {
   ngOnInit() {
 
     // Adicionamos uma classe `checked`, sempre que um elemento da lista for clicado
-    var listaMetas = <HTMLDivElement>document.getElementById("listaMetasDoDia");
+    const listaMetas = document.getElementById('listaMetasDoDia') as HTMLDivElement;
 
-    listaMetas.addEventListener("click", (ev: MouseEvent) => {
-      var element = ev.target as HTMLElement;
-      if (element.tagName === "LI") {
+    listaMetas.addEventListener('click', (ev: MouseEvent) => {
+      const element = ev.target as HTMLElement;
+      if (element.tagName === 'LI') {
         element.classList.toggle('checked');
       }
     }, false);
@@ -67,9 +67,9 @@ export class PomodoroComponent implements OnInit {
 
 
     this.salvarEstudosButton.addEventListener('click', () => {
-      //Limpar pomodoro
+      // Limpar pomodoro
       this.stopButton.click();
-      //Salvar metas com check, e limpar
+      // Salvar metas com check, e limpar
 
       this.retornaElementosDasListas().then(() =>
         this.limpaDadosDoComponentePomodoro()
@@ -77,6 +77,8 @@ export class PomodoroComponent implements OnInit {
 
 
       // Após salvar apagar a lista
+
+      // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.metasComCheck.length; i++) {
         let meta = this.metasComCheck[i].textContent;
         meta = meta.substring(0, meta.length - 1);
@@ -85,13 +87,20 @@ export class PomodoroComponent implements OnInit {
       }
 
 
+      // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.resumoAtividades.length; i++) {
         let atividade = this.resumoAtividades[i].textContent;
-        let duracao = parseInt(atividade.slice(atividade.indexOf(":") + 2, atividade.indexOf("m") - 1));
-        atividade = atividade.slice(0, atividade.indexOf(":") - 1);
-
-        this.listaAtividades.push([atividade, duracao]);
+        // tslint:disable-next-line:radix
+        const duracao = atividade.slice(atividade.indexOf(':') + 2, atividade.indexOf('m') - 1);
+        atividade = atividade.slice(0, atividade.indexOf(':') - 1);
+        const atividadeJSON = {
+          title: atividade,
+          duration: duracao
+        };
+        this.listaAtividades.push(atividadeJSON);
       }
+      console.log(this.listaAtividades);
+
 
       this.pomodoroService.setPomodoro(this.listaMetasConcluidas, this.listaAtividades);
 
@@ -102,11 +111,13 @@ export class PomodoroComponent implements OnInit {
     this.configButton.addEventListener('click', () => {
 
       if (this.showConfig) {
-        (<HTMLDivElement>document.querySelector('.inputParaPomodoro')).setAttribute("style", "visibility: visible; opacity: 1; transition-delay: 0s;");
+        // tslint:disable-next-line:max-line-length
+        (document.querySelector('.inputParaPomodoro') as HTMLDivElement).setAttribute('style', 'visibility: visible; opacity: 1; transition-delay: 0s;');
         this.showConfig = false;
       } else {
         this.showConfig = true;
-        (<HTMLDivElement>document.querySelector('.inputParaPomodoro')).setAttribute("style", "visibility: hidden; opacity: 0; transition: visibility 0s linear 0.33s, opacity 0.33s linear;");
+        // tslint:disable-next-line:max-line-length
+        (document.querySelector('.inputParaPomodoro') as HTMLDivElement).setAttribute('style', 'visibility: hidden; opacity: 0; transition: visibility 0s linear 0.33s, opacity 0.33s linear;');
       }
 
 
@@ -116,15 +127,15 @@ export class PomodoroComponent implements OnInit {
       this.pauseButton.hidden = false;
       this.startButton.hidden = true;
       this.stopButton.hidden = false;
-      (<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animationPlayState = "running";
-      (<HTMLInputElement>document.getElementById("pomodoro-clock-task")).disabled = true;
+      (document.getElementById('circuloPomodoro') as HTMLDivElement).style.animationPlayState = 'running';
+      (document.getElementById('pomodoro-clock-task') as HTMLInputElement).disabled = true;
       this.toggleClock(false);
     });
 
     this.pauseButton.addEventListener('click', () => {
       this.pauseButton.hidden = true;
       this.startButton.hidden = false;
-      (<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animationPlayState = "paused";
+      (document.getElementById('circuloPomodoro') as HTMLDivElement).style.animationPlayState = 'paused';
       this.toggleClock(false);
     });
 
@@ -132,8 +143,8 @@ export class PomodoroComponent implements OnInit {
       this.pauseButton.hidden = true;
       this.startButton.hidden = false;
       this.stopButton.hidden = true;
-      (<HTMLInputElement>document.getElementById("pomodoro-clock-task")).disabled = false;
-      (<HTMLDivElement>document.getElementById("circuloPomodoro")).style.removeProperty('animation');
+      (document.getElementById('pomodoro-clock-task') as HTMLInputElement).disabled = false;
+      (document.getElementById('circuloPomodoro') as HTMLDivElement).style.removeProperty('animation');
       this.toggleClock(true);
     });
 
@@ -142,15 +153,16 @@ export class PomodoroComponent implements OnInit {
   }
 
   limpaDadosDoComponentePomodoro() {
-    document.getElementById("listaMetasDoDia").innerHTML = "";
-    //Salvar título e tempo, para os elementos do resumo e limpar
-    document.getElementById("pomodoro-sessions").innerHTML = "";
+    document.getElementById('listaMetasDoDia').innerHTML = '';
+    // Salvar título e tempo, para os elementos do resumo e limpar
+    document.getElementById('pomodoro-sessions').innerHTML = '';
   }
 
   retornaElementosDasListas(): Promise<any> {
     this.metasComCheck = document.getElementsByClassName('checked');
     this.resumoAtividades = document.getElementsByClassName('resumoAtividade');
-    return Promise.resolve(function (v) { });
+    // tslint:disable-next-line:only-arrow-functions
+    return Promise.resolve(function(v) { });
   }
 
 
@@ -165,56 +177,57 @@ export class PomodoroComponent implements OnInit {
      */
 
 
-    var li = document.createElement("li");
+    const li = document.createElement('li');
     // Angular tem algumas complicações, como pegar valor do input
-    var valorInput = (<HTMLInputElement>document.getElementById("inputMetasDoDia")).value;
-    var textoInput = document.createTextNode(valorInput);
+    const valorInput = (document.getElementById('inputMetasDoDia') as HTMLInputElement).value;
+    const textoInput = document.createTextNode(valorInput);
     li.appendChild(textoInput);
-    li.classList.add("list-group-item");
-    li.classList.add("py-0");
+    li.classList.add('list-group-item');
+    li.classList.add('py-0');
 
-    (<HTMLInputElement>document.getElementById("btnAddElementoLista")).value = "";
+    (document.getElementById('btnAddElementoLista') as HTMLInputElement).value = '';
 
     /**
      * Adicionamos botão 'span' para apagar elemento da lista de metas
      */
-    var span = document.createElement("span");
-    var txt = document.createTextNode("\u00D7");
-    span.classList.add("close");
-    span.onclick = function () {
-      var liClosest = span.closest('li');
-      var ulClosest = liClosest.closest('ul');
+    const span = document.createElement('span');
+    const txt = document.createTextNode('\u00D7');
+    span.classList.add('close');
+    // tslint:disable-next-line:only-arrow-functions
+    span.onclick = function() {
+      const liClosest = span.closest('li');
+      const ulClosest = liClosest.closest('ul');
       ulClosest.removeChild(liClosest);
-    }
+    };
 
     span.appendChild(txt);
     li.appendChild(span);
 
     if (!(valorInput === '')) {
-      document.getElementById("listaMetasDoDia").appendChild(li);
+      document.getElementById('listaMetasDoDia').appendChild(li);
     }
 
   }
 
   toggleClock(reset: boolean) {
 
-    //var clockTimer: any;
+    // var clockTimer: any;
 
     if (reset) {
-      //para relogio
+      // para relogio
       this.stopClock();
     } else {
       if (this.isClockRunning) {
-        //pausa
+        // pausa
         clearInterval(this.clockTimer);
         this.isClockRunning = false;
         this.clockWasPaused = true;
       } else {
-        //inicia
+        // inicia
         this.isClockRunning = true;
 
 
-        //Pega input, se não tiver, vai o básico, e se não estava pausado
+        // Pega input, se não tiver, vai o básico, e se não estava pausado
         if (!this.clockWasPaused) {
           this.clockWasPaused = false;
           this.ajustaTempo();
@@ -223,7 +236,7 @@ export class PomodoroComponent implements OnInit {
         this.displayCurrentTimeLeftInSession();
         this.clockTimer = setInterval(() => {
           // decrease time left / increase time spent
-          //this.currentTimeLeftInSession = this.currentTimeLeftInSession - 1;
+          // this.currentTimeLeftInSession = this.currentTimeLeftInSession - 1;
           this.stepDown();
           this.displayCurrentTimeLeftInSession();
         }, 1000);
@@ -233,15 +246,18 @@ export class PomodoroComponent implements OnInit {
   }
 
   ajustaTempo() {
-    let workDurationInput = (<HTMLInputElement>document.querySelector('#input-work-duration')).value;
-    let breakDurationInput = (<HTMLInputElement>document.querySelector('#input-break-duration')).value;
+    const workDurationInput = (document.querySelector('#input-work-duration') as HTMLInputElement).value;
+    const breakDurationInput = (document.querySelector('#input-break-duration') as HTMLInputElement).value;
+    // tslint:disable-next-line:radix
     this.workSessionDuration = workDurationInput ? parseInt(workDurationInput) * 60 : 25 * 60;
     this.currentTimeLeftInSession = this.workSessionDuration;
+    // tslint:disable-next-line:radix
     this.breakSessionDuration = breakDurationInput ? parseInt(breakDurationInput) * 60 : 5 * 60;
 
-    this.clockLate = (this.workSessionDuration / 60) * 20
-    let timeWithDelay = this.workSessionDuration + this.clockLate;
-    (<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animation = " offsettozero " + timeWithDelay + "s linear forwards infinite";
+    this.clockLate = (this.workSessionDuration / 60) * 20;
+    const timeWithDelay = this.workSessionDuration + this.clockLate;
+    // tslint:disable-next-line:max-line-length
+    (document.getElementById('circuloPomodoro') as HTMLDivElement).style.animation = ' offsettozero ' + timeWithDelay + 's linear forwards infinite';
 
   }
 
@@ -254,17 +270,18 @@ export class PomodoroComponent implements OnInit {
       this.timeSpentInCurrentSession = 0;
       // Timer is over -> if work switch to break, viceversa
       if (this.typeSession === 'Break') {
-        //clearInterval(this.clockTimer);
+        // clearInterval(this.clockTimer);
         this.currentTimeLeftInSession = this.workSessionDuration;
         this.displaySessionLog('Break');
         this.typeSession = 'Work';
         this.stopButton.click();
-        //(<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animation = " offsettozero " + timeWithDelay + "s linear reverse infinite";
-        //(<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animationPlayState = "running";
-        //(<HTMLInputElement>document.getElementById("pomodoro-clock-task")).disabled = false;
+        // tslint:disable-next-line:max-line-length
+        // (<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animation = " offsettozero " + timeWithDelay + "s linear reverse infinite";
+        // (<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animationPlayState = "running";
+        // (<HTMLInputElement>document.getElementById("pomodoro-clock-task")).disabled = false;
 
       } else {
-        (<HTMLDivElement>document.getElementById("circuloPomodoro")).style.animationPlayState = "paused";
+        (document.getElementById('circuloPomodoro') as HTMLDivElement).style.animationPlayState = 'paused';
         this.currentTimeLeftInSession = this.breakSessionDuration;
         this.displaySessionLog('Work');
         this.typeSession = 'Break';
@@ -273,7 +290,7 @@ export class PomodoroComponent implements OnInit {
         if (sessionsList.hasChildNodes()) {
           this.listaAtividadesVazia = false;
         }
-        //(<HTMLInputElement>document.getElementById("pomodoro-clock-task")).disabled = true;
+        // (<HTMLInputElement>document.getElementById("pomodoro-clock-task")).disabled = true;
 
       }
 
@@ -283,27 +300,27 @@ export class PomodoroComponent implements OnInit {
 
   displaySessionLog(type: string) {
 
-    let currentTaskLabel = (<HTMLInputElement>document.querySelector('#pomodoro-clock-task')).value;
+    const currentTaskLabel = (document.querySelector('#pomodoro-clock-task') as HTMLInputElement).value;
 
     const sessionsList = document.querySelector('#pomodoro-sessions');
     // append li to it
     const li = document.createElement('li');
-    li.classList.add("resumoAtividade");
-    let sessionLabel = currentTaskLabel ? currentTaskLabel : 'Work'
+    li.classList.add('resumoAtividade');
+    let sessionLabel = currentTaskLabel ? currentTaskLabel : 'Work';
 
-    let elapsedTime = Math.floor(this.workSessionDuration / 60)
+    let elapsedTime = Math.floor(this.workSessionDuration / 60);
 
     if (this.typeSession === 'Break') {
-      sessionLabel = 'Break'
-      elapsedTime = Math.floor(this.breakSessionDuration / 60)
+      sessionLabel = 'Break';
+      elapsedTime = Math.floor(this.breakSessionDuration / 60);
     }
 
 
-    //elapsedTime = elapsedTime > 0 ? elapsedTime : '< 1';
+    // elapsedTime = elapsedTime > 0 ? elapsedTime : '< 1';
 
     const text = document.createTextNode(
       `${sessionLabel} : ${elapsedTime} min`
-    )
+    );
 
     li.appendChild(text);
     sessionsList.appendChild(li);
@@ -312,11 +329,11 @@ export class PomodoroComponent implements OnInit {
 
   stopClock() {
 
-    //this.displaySessionLog(this.typeSession);
-    this.typeSession = "Work";
+    // this.displaySessionLog(this.typeSession);
+    this.typeSession = 'Work';
     this.clockWasPaused = false;
 
-    //this.ajustaTempo();
+    // this.ajustaTempo();
     this.timeSpentInCurrentSession = 0;
     // 1) reset the timer we set
     clearInterval(this.clockTimer);
@@ -335,14 +352,14 @@ export class PomodoroComponent implements OnInit {
     let result = '';
     const seconds = secondsLeft % 60;
     const minutes = Math.floor(secondsLeft / 60) % 60;
-    let hours = Math.floor(secondsLeft / 3600);
+    const hours = Math.floor(secondsLeft / 3600);
 
     // add leading zeroes if it's less than 10
     function addLeadingZeroes(time) {
       return time < 10 ? `0${time}` : time;
     }
 
-    if (hours > 0) result += `${hours}:`;
+    if (hours > 0) { result += `${hours}:`; }
 
     result += `${addLeadingZeroes(minutes)}:${addLeadingZeroes(seconds)}`;
     this.pomodoroTimer.innerHTML = result.toString();

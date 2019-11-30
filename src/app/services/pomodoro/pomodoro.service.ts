@@ -12,13 +12,14 @@ export class PomodoroService {
 
   constructor(private http: HttpClient) { }
 
-  setPomodoro(checklist, sessions) {
+  setPomodoro(checklist, session) {
+
     const date = new Date();
-    const pom: Pomodoro = { sessions,  checklist, date };
-    return this.http.post(this.urlPomodoro, pom).toPromise().then( () =>{
-      console.log(" Enviou! ") 
+    const pom: Pomodoro = { checklist,  session, date };
+    return this.http.post(this.urlPomodoro, pom).toPromise().then( () => {
+      console.log(' Enviou! ');
     }).catch( (e) => {
-      console.log(e) 
+      console.log(e) ;
     });
   }
 }

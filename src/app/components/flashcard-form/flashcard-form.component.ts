@@ -1,5 +1,6 @@
+import { SelectFlashcardGroupService } from './../../services/selectFlashcardGroup/select-flashcard-group.service';
 import { FlashcardListService } from './../../services/flashcardList/flashcard-list.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-flashcard-form',
@@ -10,14 +11,17 @@ export class FlashcardFormComponent implements OnInit {
 
   public question: string;
   public answer: string;
+  @Output() pushMe = new EventEmitter();
 
-  constructor(private flashcardListService: FlashcardListService) { }
+  constructor(private flashcardListService: FlashcardListService, private flashcardGroupService: SelectFlashcardGroupService) { }
 
   ngOnInit() {
   }
 
   addFlashcard() {
-    this.flashcardListService.addToList(this.question, this.answer);
+    const group = this.flashcardGroupService.activeFlashcardGroup;
+    this.flashcardListService.addToList(group, this.question, this.answer);
+    this.pushMe.emit({group, question: this.question, answer: this.answer});
   }
 
 }
