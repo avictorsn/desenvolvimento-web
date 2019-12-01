@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-planejamento',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanejamentoComponent implements OnInit {
 
-  constructor() { }
+  eventClicked = 'create';
+  sidenavOpened: boolean;
+  faBars = faBars;
+
+  constructor() {
+    this.sidenavOpened = false;
+   }
 
   ngOnInit() {
+  }
+
+  toggle() {
+    this.sidenavOpened = ! this.sidenavOpened;
+  }
+
+  create() {
+    this.eventClicked = 'create';
+  }
+
+  load() {
+    this.eventClicked = 'load';
   }
 
 }

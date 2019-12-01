@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+import { GoogleNewsApiService } from './../../services/googlenewsAPI/google-news-api.service';
+
+import { News } from 'src/app/models/news.model';
+import { Article } from './../../models/article.model';
+
+
 @Component({
   selector: 'app-noticias',
   templateUrl: './noticias.component.html',
@@ -7,9 +13,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoticiasComponent implements OnInit {
 
-  constructor() { }
+  news: News;
+  articles: Article[] = [];
+  wasLoaded = false;
+
+  constructor(private newsService: GoogleNewsApiService) { }
 
   ngOnInit() {
+    this.populateNewsList();
+  }
+
+  populateNewsList() {
+    this.newsService.getGeneralNews().subscribe((data) => {
+      this.news = data;
+      this.articles = this.news.articles;
+      this.wasLoaded = true;
+
+    });
+
   }
 
 }

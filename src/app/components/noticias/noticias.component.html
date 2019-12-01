@@ -1,1 +1,20 @@
-<p>noticias works!</p>
+<h1 class="mat-display-3 text-center">Notícias do dia</h1>
+<mat-form-field class="example-full-width">
+    <input type="tel" matInput placeholder="Telephone">
+    <fa-icon matSuffix></fa-icon>
+</mat-form-field>
+<div class="news-list-container container" *ngIf="wasLoaded">
+    <div data-spy="scroll" class="list-group news-list align-items-center" *ngFor="let article of this.articles">
+      <mat-card class="list-group-item list-group-item-action article-item">
+        <a [href]=article.url target="_blank" class="article-link">
+          <mat-card-header class="text-center mat-display-1">
+            {{article.title}}
+          </mat-card-header>
+          <mat-card-content>
+            {{article.description}}
+          </mat-card-content>
+        </a>
+      </mat-card>
+    </div>
+</div>
+<app-loading-icon [loadingState]="wasLoaded"></app-loading-icon>

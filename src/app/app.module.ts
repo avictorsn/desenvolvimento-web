@@ -1,3 +1,4 @@
+import { GoogleNewsApiService } from './services/googlenewsAPI/google-news-api.service';
 import { FlashcardListService } from './services/flashcardList/flashcard-list.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserModule } from '@angular/platform-browser';
@@ -46,6 +47,9 @@ import { ApiService } from './services/api/api.service';
 import { AlternaComponentesService } from './services/alternaComponetes/alterna-componentes.service';
 import { SelectFlashcardGroupService } from './services/selectFlashcardGroup/select-flashcard-group.service';
 import { PomodoroService } from './services/pomodoro/pomodoro.service';
+import { CriarPlanejamentoComponent } from './components/criar-planejamento/criar-planejamento.component';
+import { ListaPlanejamentoComponent } from './components/lista-planejamento/lista-planejamento.component';
+import { LoadingIconComponent } from './components/loading-icon/loading-icon.component';
 
 
 
@@ -76,7 +80,10 @@ import { PomodoroService } from './services/pomodoro/pomodoro.service';
     FlashcardListComponent,
     FlashcardContainerComponent,
     FlashcardGroupListComponent,
-    FlashcardGroupFormComponent
+    FlashcardGroupFormComponent,
+    CriarPlanejamentoComponent,
+    ListaPlanejamentoComponent,
+    LoadingIconComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +96,14 @@ import { PomodoroService } from './services/pomodoro/pomodoro.service';
     // NgCircleProgressModule.forRoot({})
 
   ],
-  providers: [ AlternaComponentesService, ApiService, SelectFlashcardGroupService, FlashcardListService, PomodoroService ],
+  providers: [
+    AlternaComponentesService,
+    ApiService,
+    SelectFlashcardGroupService,
+    FlashcardListService,
+    PomodoroService,
+    GoogleNewsApiService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

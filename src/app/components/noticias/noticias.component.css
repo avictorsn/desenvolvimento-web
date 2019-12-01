@@ -1,0 +1,30 @@
+/* .news-list{
+  background-color: #56be52;
+} */
+
+.news-list-container{
+  overflow-y: scroll;
+  height: 65vh;
+}
+
+
+.article-link{
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+
+}
+
+.article-item{
+  background-color: #56be52;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  width: 80%;
+
+}
+.article-item:hover{
+  color: #DED !important;
+  background-color: #121 !important;
+}
+

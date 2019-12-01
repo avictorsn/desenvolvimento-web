@@ -1,0 +1,23 @@
+
+.mat-sidenav-container{
+  height: 100%;
+}
+
+.mat-sidenav, .mat-sidenav-content{
+  padding: 20px;
+}
+
+.mat-sidenav-content{
+  background-color: #1852a8;
+}
+
+.mat-sidenav{
+  width: 90%;
+  background: transparent;
+
+}
+
+.management-main-button{
+  background-color: #72E873;
+  margin-left: 4em;
+}

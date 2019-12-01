@@ -7,6 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 
@@ -20,7 +22,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCardModule,
     MatGridListModule,
     MatSidenavModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatInputModule,
@@ -28,7 +31,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCardModule,
     MatGridListModule,
     MatSidenavModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule
 
   ]
 })

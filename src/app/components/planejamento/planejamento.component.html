@@ -1,1 +1,9 @@
-<p>planejamento works!</p>
+<mat-sidenav-container>
+  <mat-sidenav opened #sidenav [(opened)]="sidenavOpened" (click)="sidenav.toggle()">
+    <button class="btn btn-sm management-main-button" (click)="create()">Criar planejamento</button>
+    <button class="btn btn-sm management-main-button" (click)="load()">Abrir planejamento</button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <fa-icon [icon]="faBars" style="font-size: 20px;color: white" (click)="sidenav.toggle()"></fa-icon>
+  </mat-sidenav-content>
+</mat-sidenav-container>
