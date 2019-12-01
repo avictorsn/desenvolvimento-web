@@ -4,6 +4,7 @@
 
 .news-list-container{
   overflow-y: scroll;
+  overflow-x: hidden;
   height: 65vh;
 }
 
@@ -28,3 +29,11 @@
   background-color: #121 !important;
 }
 
+.full-width{
+  margin-top: 3vh;
+  width: 90%;
+}
+
+.searchbar-container{
+  margin-left: 2vw;
+}

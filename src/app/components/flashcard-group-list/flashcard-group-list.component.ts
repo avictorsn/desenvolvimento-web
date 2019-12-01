@@ -6,6 +6,7 @@ import { FlashcardGroup } from '../../models/flashcardGroup.model';
 import { FlashcardListService } from './../../services/flashcardList/flashcard-list.service';
 import { SelectFlashcardGroupService } from '../../services/selectFlashcardGroup/select-flashcard-group.service';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -22,9 +23,11 @@ export class FlashcardGroupListComponent implements OnInit, OnChanges {
   groupListLoaded = false;
   flashcardListLoaded = false;
 
-  //  Resolver problema de novo grupo sem lista de flashcards ficando ativo quando não deveria;
-  constructor(private flashcardGroupService: SelectFlashcardGroupService, private flashcardService: FlashcardListService) { }
+  constructor(
+    private flashcardGroupService: SelectFlashcardGroupService,
+    private flashcardService: FlashcardListService,
 
+    private flashcardGroupSnackBar: MatSnackBar) { }
   ngOnChanges() {
     this.buildFlashcardGroupList();
   }
@@ -92,6 +95,9 @@ export class FlashcardGroupListComponent implements OnInit, OnChanges {
   removeMe(id) {
     this.flashcardGroupService.removeGroup(id);
     this.updateLocalFlashcardGroupList(id);
+    this.flashcardGroupSnackBar.open('Grupo removido com sucesso!', 'Fechar', {
+      duration: 2000
+    });
   }
 
   run() {

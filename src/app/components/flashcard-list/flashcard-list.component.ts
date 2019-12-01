@@ -1,8 +1,10 @@
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
 import { Flashcard } from './../../models/flashcard.model';
 import { FlashcardListService } from './../../services/flashcardList/flashcard-list.service';
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { faTrashAlt, faSearch, faEye } from '@fortawesome/free-solid-svg-icons';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 
 
 @Component({
@@ -27,7 +29,7 @@ export class FlashcardListComponent implements OnInit, OnChanges {
   @Input() flashcardList: Flashcard[];
   @Output() sliceMe =  new EventEmitter();
 
-  constructor(private flashcardService: FlashcardListService) {
+  constructor(private flashcardService: FlashcardListService, private flashcardSnackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -46,6 +48,9 @@ export class FlashcardListComponent implements OnInit, OnChanges {
   removeMe(id) {
     this.flashcardService.removeFlashcard(id);
     this.sliceMe.emit(id);
+    this.flashcardSnackBar.open('Flashcard removido com sucesso!', 'Fechar', {
+      duration: 2000
+    });
   }
 
   showMe(flashcard) {

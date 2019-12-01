@@ -1,8 +1,13 @@
-<h1 class="mat-display-3 text-center">Notícias do dia</h1>
-<mat-form-field class="example-full-width">
-    <input type="tel" matInput placeholder="Telephone">
-    <fa-icon matSuffix></fa-icon>
-</mat-form-field>
+<!-- <h1 class="mat-display-3 text-center">Notícias do dia</h1> -->
+<div class="searchbar-container" *ngIf="wasLoaded">
+  <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Digite uma tag</mat-label>
+      <input type="text" matInput [(ngModel)]="query" (keyup.enter)="validateQuery()">
+      <button mat-icon-button matSuffix color="primary" [disabled]="query.length===0">
+        <fa-icon [icon]="faSearch" style="font-size: 22px" ></fa-icon>
+      </button>
+  </mat-form-field>
+</div>
 <div class="news-list-container container" *ngIf="wasLoaded">
     <div data-spy="scroll" class="list-group news-list align-items-center" *ngFor="let article of this.articles">
       <mat-card class="list-group-item list-group-item-action article-item">
@@ -17,4 +22,5 @@
       </mat-card>
     </div>
 </div>
+
 <app-loading-icon [loadingState]="wasLoaded"></app-loading-icon>

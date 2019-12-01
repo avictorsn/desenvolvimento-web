@@ -11,13 +11,14 @@ export class GoogleNewsApiService {
 
   apiKey = 'ad5f8ef06b204bf19bc5173e9f85dff2';
   urlBase = 'http://newsapi.org/v2/top-headlines?country=br';
+  categoryQuery = 'category=science';
   keyQuery = '&apiKey=' + this.apiKey;
   pageSize = 'pageSize=10';
 
   constructor(private http: HttpClient) { }
 
   getGeneralNews() {
-    return this.http.get<News>(this.urlBase + this.keyQuery).pipe(map(res => res));
+    return this.http.get<News>(this.urlBase + '&' + this.categoryQuery + this.keyQuery).pipe(map(res => res));
   }
 
   getNewsByTag(tag) {
