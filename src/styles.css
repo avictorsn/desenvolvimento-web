@@ -41,5 +41,10 @@ a{
     color: white;
 }
 
+.snackbar-error {
+  background-color: #f1d5d5;
+  color: #cf2626;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

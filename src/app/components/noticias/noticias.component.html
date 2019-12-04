@@ -23,4 +23,6 @@
     </div>
 </div>
 
-<app-loading-icon [loadingState]="wasLoaded"></app-loading-icon>
+<app-error-icon  [errorState]="errorOnLoad"></app-error-icon>
+
+<app-loading-icon [loadingState]="wasLoaded" [errorState]="errorOnLoad"></app-loading-icon>

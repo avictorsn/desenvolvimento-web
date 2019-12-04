@@ -22,19 +22,23 @@ export class FlashcardGroupListComponent implements OnInit, OnChanges {
   flashcardList: Flashcard[];
   groupListLoaded = false;
   flashcardListLoaded = false;
+  flashcardListEmpty = false;
 
   constructor(
     private flashcardGroupService: SelectFlashcardGroupService,
-    private flashcardService: FlashcardListService,
+    public flashcardService: FlashcardListService,
 
     private flashcardGroupSnackBar: MatSnackBar) { }
   ngOnChanges() {
     this.buildFlashcardGroupList();
+    this.buildFlashcardGroupList();
+    this.populateFlashcardList();
   }
 
   ngOnInit() {
     this.buildFlashcardGroupList();
     this.populateFlashcardList();
+    // this.buildFlashcardGroupList();
   }
 
   buildFlashcardGroupList() {
@@ -44,26 +48,36 @@ export class FlashcardGroupListComponent implements OnInit, OnChanges {
         this.flashcardGroupService.changeActiveFlashcardGroup(this.flashcardGroupList[0]._id);
       }
       this.groupListLoaded = true;
-    });
+    },
+    error => this.showError()
+    );
   }
 
   populateFlashcardList() {
     this.flashcardService.getAll().subscribe((data) => {
       this.flashcardList = data;
       this.flashcardListLoaded = true;
-    });
+      this.flashcardService.updateList(this.flashcardList, this.flashcardGroupService.activeFlashcardGroup);
+      if (this.flashcardService.updatedList.length === 0) {
+        this.flashcardListEmpty = true;
+      } else {
+        this.flashcardListEmpty = false;
+      }
+      console.log('atualizou');
+    }
+    );
+
   }
 
   getActiveFlashcardGroup() {
     return this.flashcardGroupService.activeFlashcardGroup;
   }
   //  Resolver flashcard list que passa como parâmetro para o componente da lista;
-  getActiveFlashcardList() {
-    const activeFlashcardList = this.flashcardService.list(this.flashcardList, this.flashcardGroupService.activeFlashcardGroup);
+  // getActiveFlashcardList() {
 
-    return activeFlashcardList;
+  //   return activeFlashcardList;
 
-  }
+  // }
 
 
   isEmpty() {
@@ -74,6 +88,7 @@ export class FlashcardGroupListComponent implements OnInit, OnChanges {
   showMe(id) {
     this.flashcardGroupService.changeActiveFlashcardGroup(id);
     this.flashcardService.changeActiveFlashcardList(id);
+    this.populateFlashcardList();
   }
 
   updateLocalFlashcardGroupList(id) {
@@ -84,12 +99,15 @@ export class FlashcardGroupListComponent implements OnInit, OnChanges {
       this.flashcardGroupService.activeFlashcardGroup = this.flashcardGroupList[0]._id;
       this.flashcardService.changeActiveFlashcardList(this.flashcardGroupService.activeFlashcardGroup);
     }
+    // this.populateFlashcardList();
   }
 
   sliceLocalFlashcardList(id) {
+    this.populateFlashcardList();
     const flashcard = this.flashcardList.find((element) => element._id === id);
     const index = this.flashcardList.indexOf(flashcard);
     this.flashcardList.splice(index, 1);
+    this.populateFlashcardList();
   }
 
   removeMe(id) {
@@ -98,6 +116,7 @@ export class FlashcardGroupListComponent implements OnInit, OnChanges {
     this.flashcardGroupSnackBar.open('Grupo removido com sucesso!', 'Fechar', {
       duration: 2000
     });
+    this.populateFlashcardList();
   }
 
   run() {
@@ -105,8 +124,16 @@ export class FlashcardGroupListComponent implements OnInit, OnChanges {
   }
 
   refreshFlashcardList(newFlashcard) {
+    this.populateFlashcardList();
     this.flashcardList.push(newFlashcard);
     this.populateFlashcardList();
+  }
+
+  showError() {
+    this.flashcardGroupSnackBar.open('Falha na conexão! Tente novamente.', 'Fechar').afterDismissed().subscribe(() => {
+      this.buildFlashcardGroupList();
+      this.populateFlashcardList();
+    });
   }
 
 }

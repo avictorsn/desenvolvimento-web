@@ -11,10 +11,10 @@
     </a>
   </div>
   <div class="flashcard-list" id="flashcard-list" *ngIf="!this.isEmpty()">
-    <app-flashcard-list [flashcardList]="this.getActiveFlashcardList()" (sliceMe)="sliceLocalFlashcardList($event)" *ngIf="flashcardListLoaded"></app-flashcard-list>
+    <app-flashcard-list [flashcardList]="this.flashcardService.updatedList" (sliceMe)="sliceLocalFlashcardList($event)" *ngIf="flashcardListLoaded"></app-flashcard-list>
   </div>
   <div *ngIf="!this.isEmpty()">
-    <button mat-raised-button color="primary" class="test-button" (click)="run()">Começar teste</button>
+    <button mat-raised-button color="primary" class="test-button" (click)="run()"  [disabled]="this.flashcardListEmpty">Começar teste</button>
   </div>
   <div *ngIf="this.isEmpty()">
     <h5 class="display-4">Não há grupos disponíveis</h5>
@@ -23,7 +23,7 @@
 </div>
 
 <div *ngIf="this.testRunning && groupListLoaded">
-  <app-flashcard-container [flashcardList]="this.getActiveFlashcardList()"></app-flashcard-container>
+  <app-flashcard-container [flashcardList]="this.flashcardService.updatedList"></app-flashcard-container>
 </div>
 
 <!-- Flashcard-add Modal -->

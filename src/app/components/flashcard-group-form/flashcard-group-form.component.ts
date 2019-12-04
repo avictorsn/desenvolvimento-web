@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class FlashcardGroupFormComponent implements OnInit {
 
-  public name: string;
+  public name = '';
   wasAdded: boolean;
 
   constructor(private flashcardGroupService: SelectFlashcardGroupService, private flashcardGroupSnackBar: MatSnackBar) { }

@@ -4,7 +4,7 @@
     <input type="text" class="form-control" [(ngModel)]="name" #ctrl="ngModel" id="flashcardGroupName" aria-describedby="groupNameHelper" placeholder="Novo grupo">
     <small id="groupNameHelper" class="form-text text-muted">Escolha um nome para o novo grupo de flashcards</small>
   </div>
-  <button (click)="createGroup()" class="btn btn-lg flashcard-form-button">Criar grupo</button>
+  <button (click)="createGroup()" class="btn btn-lg flashcard-form-button" [disabled]="this.name.length === 0">Criar grupo</button>
 </div>
 <div *ngIf="wasAdded">
   <app-flashcard-group-list></app-flashcard-group-list>

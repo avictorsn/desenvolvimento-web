@@ -50,6 +50,7 @@ import { PomodoroService } from './services/pomodoro/pomodoro.service';
 import { CriarPlanejamentoComponent } from './components/criar-planejamento/criar-planejamento.component';
 import { ListaPlanejamentoComponent } from './components/lista-planejamento/lista-planejamento.component';
 import { LoadingIconComponent } from './components/loading-icon/loading-icon.component';
+import { ErrorIconComponent } from './components/error-icon/error-icon.component';
 
 
 
@@ -83,7 +84,8 @@ import { LoadingIconComponent } from './components/loading-icon/loading-icon.com
     FlashcardGroupFormComponent,
     CriarPlanejamentoComponent,
     ListaPlanejamentoComponent,
-    LoadingIconComponent
+    LoadingIconComponent,
+    ErrorIconComponent
   ],
   imports: [
     BrowserModule,

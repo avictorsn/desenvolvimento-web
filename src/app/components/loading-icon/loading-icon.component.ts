@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class LoadingIconComponent implements OnInit {
 
   @Input() loadingState: boolean;
+  @Input() errorState: boolean;
 
   constructor() { }
 

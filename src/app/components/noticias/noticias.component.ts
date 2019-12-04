@@ -21,6 +21,7 @@ export class NoticiasComponent implements OnInit {
   faSearch = faSearch;
   query: string;
   queryEntered = false;
+  errorOnLoad = false;
 
   constructor(private newsService: GoogleNewsApiService, private newsSnackBar: MatSnackBar) { }
 
@@ -33,9 +34,12 @@ export class NoticiasComponent implements OnInit {
       this.news = data;
       this.articles = this.news.articles;
       this.wasLoaded = true;
+      this.errorOnLoad = false;
       this.query = '';
 
-    });
+    },
+    error => this.showError()
+    );
   }
 
   validateQuery() {
@@ -50,6 +54,14 @@ export class NoticiasComponent implements OnInit {
 
   searchFor() {
     //  Chamada para o método da APIservice que busca por queries;
+  }
+
+  showError() {
+    this.errorOnLoad = true;
+    this.newsSnackBar.open('Falha na conexão! Verifique sua conexão com a rede e tente novamente.', 'Fechar', {
+      panelClass: ['snackbar-error']
+    });
+    console.log('ooooo');
   }
 
 }

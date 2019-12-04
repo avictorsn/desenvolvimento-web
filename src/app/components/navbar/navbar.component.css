@@ -1,3 +1,7 @@
 .bg-navbar{
     background-color: #72E873;
 }
+
+.float-right{
+  flex: end;
+}
