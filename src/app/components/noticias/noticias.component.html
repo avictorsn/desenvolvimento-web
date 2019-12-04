@@ -22,6 +22,9 @@
       </mat-card>
     </div>
 </div>
+<div *ngIf="wasLoaded">
+  <p>Powered by Google News API ®</p> <!-- Tem que fazer o merchan deles pra não sobrar pro pobre desenvolvedor aqui ;) -->
+</div>
 
 <app-error-icon  [errorState]="errorOnLoad"></app-error-icon>
 

@@ -8,13 +8,10 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { PricesPageComponent } from './pages/prices-page/prices-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 
-// import { AuthenticationPageComponent } from './pages/authentication-page/authentication-page.component';
-
 const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
   {path: 'home', component: HomePageComponent},
   {path: 'signup', component: SignupPageComponent},
-  // {path: 'auth', component: AuthenticationPageComponent},
   {path: 'about', component: AboutPageComponent},
   {path: 'contact', component: ContactPageComponent},
   {path: 'prices', component: PricesPageComponent},

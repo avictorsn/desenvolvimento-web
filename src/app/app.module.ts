@@ -18,7 +18,6 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { AuthenticationPageComponent } from './pages/authentication-page/authentication-page.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { PricesPageComponent } from './pages/prices-page/prices-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
@@ -51,6 +50,7 @@ import { CriarPlanejamentoComponent } from './components/criar-planejamento/cria
 import { ListaPlanejamentoComponent } from './components/lista-planejamento/lista-planejamento.component';
 import { LoadingIconComponent } from './components/loading-icon/loading-icon.component';
 import { ErrorIconComponent } from './components/error-icon/error-icon.component';
+import { UnderMaintenanceComponent } from './components/under-maintenance/under-maintenance.component';
 
 
 
@@ -61,7 +61,6 @@ import { ErrorIconComponent } from './components/error-icon/error-icon.component
     HomePageComponent,
     SignupPageComponent,
     NavbarComponent,
-    AuthenticationPageComponent,
     AboutPageComponent,
     PricesPageComponent,
     RedblackDirective,
@@ -85,7 +84,8 @@ import { ErrorIconComponent } from './components/error-icon/error-icon.component
     CriarPlanejamentoComponent,
     ListaPlanejamentoComponent,
     LoadingIconComponent,
-    ErrorIconComponent
+    ErrorIconComponent,
+    UnderMaintenanceComponent
   ],
   imports: [
     BrowserModule,
