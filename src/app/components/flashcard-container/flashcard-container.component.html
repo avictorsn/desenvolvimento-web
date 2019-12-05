@@ -26,3 +26,26 @@
     </button>
   </mat-card-actions>
 </mat-card>
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col-md"></div>
+    <button mat-flat-button color="warn" data-toggle="modal" data-target="#scoreModal">Mostrar pontuação</button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="scoreModal" tabindex="-1" role="dialog" aria-labelledby="scoreModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="scoreModalLabel">Pontuação até o momento</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Acertou {{totalScore}}/{{flashcardList.length }}!
+        </div>
+      </div>
+    </div>
+  </div>

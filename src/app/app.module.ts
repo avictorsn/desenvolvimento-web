@@ -22,7 +22,6 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { PricesPageComponent } from './pages/prices-page/prices-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { SliderComponent } from './components/slider/slider.component';
-import { TesterComponent } from './components/tester/tester.component';
 import { GenericoComponent } from './components/generico/generico.component';
 import { VerticalNavbarComponent } from './components/vertical-navbar/vertical-navbar.component';
 import { PomodoroComponent } from './components/pomodoro/pomodoro.component';
@@ -75,7 +74,6 @@ import { UnderMaintenanceComponent } from './components/under-maintenance/under-
     RelatoriosComponent,
     AgendaComponent,
     NoticiasComponent,
-    TesterComponent,
     FlashcardFormComponent,
     FlashcardListComponent,
     FlashcardContainerComponent,

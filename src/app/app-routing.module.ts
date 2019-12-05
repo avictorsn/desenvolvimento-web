@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'about', component: AboutPageComponent},
   {path: 'contact', component: ContactPageComponent},
   {path: 'prices', component: PricesPageComponent},
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: '', redirectTo: 'about', pathMatch: 'full'},
 
 ];
 

@@ -30,3 +30,38 @@
 	background: #000;
 	margin: 3px 0px 5px 3px;
 }
+
+
+.get-started-button{
+  margin-right: 2rem;
+  background-color: white;
+  color: #56ad57;
+}
+
+.service-component{
+  background-color: #dad6d6;
+  margin-bottom: 8em;
+}
+
+.last-service{
+  margin-bottom: 20em;
+}
+
+
+.service-icon{
+  font-size: 200px;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.pomodoro{
+  color: #da1709;
+}
+
+.flashcards{
+  color: #3d3df5;
+}
+
+.news{
+  color: #82d337;
+}

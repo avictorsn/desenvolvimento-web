@@ -31,7 +31,7 @@ export class FlashcardGroupListComponent implements OnInit, OnChanges {
     private flashcardGroupSnackBar: MatSnackBar) { }
   ngOnChanges() {
     this.buildFlashcardGroupList();
-    this.buildFlashcardGroupList();
+    // this.buildFlashcardGroupList();
     this.populateFlashcardList();
   }
 
@@ -72,12 +72,6 @@ export class FlashcardGroupListComponent implements OnInit, OnChanges {
   getActiveFlashcardGroup() {
     return this.flashcardGroupService.activeFlashcardGroup;
   }
-  //  Resolver flashcard list que passa como parâmetro para o componente da lista;
-  // getActiveFlashcardList() {
-
-  //   return activeFlashcardList;
-
-  // }
 
 
   isEmpty() {

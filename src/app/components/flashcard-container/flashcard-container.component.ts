@@ -43,6 +43,8 @@ export class FlashcardContainerComponent implements OnInit {
   faCheckCircle = faCheckCircle;
   showAnswer = false;
   rightAnswer = false;
+  scores = [];
+  totalScore = 0;
 
   @Input() flashcardList: string;
 
@@ -55,16 +57,27 @@ export class FlashcardContainerComponent implements OnInit {
   }
 
   goToNext() {
-    this.rightAnswer = false;
     this.showAnswer = false;
     this.flashcardIndex++;
+    const reachedIndexes = this.scores.map((element) => element.index );
+    if (reachedIndexes.includes(this.flashcardIndex)) {
+      this.rightAnswer = this.scores.find((element) => element.index === this.flashcardIndex).right;
+    } else {
+      this.rightAnswer = false;
+
+    }
   }
 
   goToPrevious() {
     if (this.flashcardIndex > 0) {
-      this.rightAnswer = false;
       this.showAnswer = false;
       this.flashcardIndex--;
+      const reachedIndexes = this.scores.map((element) => element.index );
+      if (reachedIndexes.includes(this.flashcardIndex)) {
+        this.rightAnswer = this.scores.find((element) => element.index === this.flashcardIndex).right;
+      } else {
+        this.rightAnswer = false;
+      }
     }
   }
 
@@ -74,6 +87,29 @@ export class FlashcardContainerComponent implements OnInit {
 
   rightOrWrong() {
     this.rightAnswer = !this.rightAnswer;
+    const score = this.scores.find((tuple) => tuple.index === this.flashcardIndex);
+    if (!this.rightAnswer) {
+      if (score) {
+        score.right = false;
+      } else  {
+        this.scores.push({
+          index: this.flashcardIndex,
+          right: false
+        });
+      }
+    } else if (this.rightAnswer) {
+      if (score) {
+        score.right = true;
+      } else  {
+        this.scores.push({
+          index: this.flashcardIndex,
+          right: true
+        });
+      }
+    }
+    this.updateTotalScore();
+    console.log('Minha pilha: ' + this.scores.map((element) => element.right));
+
 
   }
 
@@ -90,4 +126,10 @@ export class FlashcardContainerComponent implements OnInit {
     }
     return true;
   }
+
+  updateTotalScore() {
+    const score = this.scores.filter((tuple) => tuple.right === true);
+    this.totalScore = score.length;
+  }
+
 }

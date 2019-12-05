@@ -1,4 +1,4 @@
-<div class=" text-about">
+<!-- <div class=" text-about">
   <h1>Sobre</h1>
   <p>conheça mais sobre nós</p>
 </div>
@@ -20,4 +20,49 @@
     </div>
 
   </div>
+</div> -->
+
+<mat-card @fadeInHeader>
+  <mat-card-header>
+    <p class="mat-display-4">Gerencie seus estudos de forma simples.</p>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="row justify-content-center">
+      <p class="mat-display-1">Experimente nossos serviços!</p>
+    </div>
+    <div class="row justify-content-center">
+      <!-- <div class="col-md"></div> -->
+      <button class="get-started-button" mat-raised-button routerLink="/login">Comece a Usar</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<div class="container service-container" @fadeInServices>
+  <mat-card class="service-component">
+    <div class="row align-items-center justify-content-center">
+      <fa-icon [icon]="faStopwatch" class="service-icon pomodoro text-center"></fa-icon>
+      <p class="mat-display-4 text-center">Pomodoros</p>
+    </div>
+    <div class="row justify-content-center">
+      <p>Defina metas e cumpra horários de estudo com o nosso pomodoro.</p>
+    </div>
+  </mat-card>
+  <mat-card class="service-component">
+    <div class="row align-items-center justify-content-center">
+      <p class="mat-display-4 text-center">Flashcards</p>
+      <fa-icon [icon]="faWindowRestore" class="service-icon flashcards text-center"></fa-icon>
+    </div>
+    <div class="row justify-content-center">
+      <p>Teste seu nível de aprendizagem com flashcards animados.</p>
+    </div>
+  </mat-card>
+  <mat-card class="service-component last-service">
+    <div class="row align-items-center justify-content-center">
+      <fa-icon [icon]="faNewspaper" class="service-icon news text-center"></fa-icon>
+      <p class="mat-display-4 text-center">Notícias</p>
+    </div>
+    <div class="row justify-content-center">
+      <p>Defina metas e cumpra horários de estudo com o nosso pomodoro.</p>
+    </div>
+  </mat-card>
 </div>
